@@ -1156,6 +1156,8 @@ libwireshark.so.11:range_empty
 libwireshark.so.11:range_foreach
 libwireshark.so.11:range_remove_value
 libwireshark.so.11:ranges_are_equal
+libwireshark.so.11:read_keytab_file
+libwireshark.so.11:read_keytab_file_from_preferences
 libwireshark.so.11:read_prefs_file
 libwireshark.so.11:reassembly_table_destroy
 libwireshark.so.11:reassembly_table_init
@@ -2000,7 +2002,10 @@ libwsutil.so.9:report_read_failure
 libwsutil.so.9:report_warning
 libwsutil.so.9:report_write_failure
 libwsutil.so.9:rsa_decrypt_inplace
+libwsutil.so.9:rsa_load_pem_key
+libwsutil.so.9:rsa_load_pkcs12
 libwsutil.so.9:rsa_private_key_free
+libwsutil.so.9:rsa_privkey_to_sexp
 libwsutil.so.9:running_in_build_directory
 libwsutil.so.9:running_with_special_privs
 libwsutil.so.9:set_persconffile_dir

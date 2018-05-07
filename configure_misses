@@ -1,5 +1,3 @@
-Configure miss: LIBGNUTLS
-Configure miss: LIBGNUTLS
 Configure miss: asciidoctorj
 Configure miss: asciidoctor
 Configure miss: asciidoctorj
@@ -23,12 +21,6 @@ Configure miss: x86_64-generic-linux-gnu-pcap-config
 Configure miss: broken pcap-config
 Configure miss: pcap_open
 Configure miss: inflatePrime missing when linking with X11
-Configure miss: lz4.h usability
-Configure miss: lz4.h presence
-Configure miss: lz4.h
-Configure miss: snappy-c.h usability
-Configure miss: snappy-c.h presence
-Configure miss: snappy-c.h
 Configure miss: if you have lua < 5.3
 Configure miss: if you have lua5.2
 Configure miss: if you have lua-5.2
@@ -39,27 +31,15 @@ Configure miss: if you have lua51
 Configure miss: if you have lua5.0
 Configure miss: if you have lua-5.0
 Configure miss: if you have lua50
-Configure miss: the location of lua.h
-Configure miss: portaudio.h usability
-Configure miss: portaudio.h presence
-Configure miss: portaudio.h
+Configure miss: PortAudioStream
 Configure miss: setcap
 Configure miss: whether to install dumpcap with cap_net_admin and cap_net_raw capabilities
 Configure miss: whether to install dumpcap setuid
-Configure miss: cap_set_flag in -lcap
 Configure miss: x86_64-generic-linux-gnu-krb5-config
-Configure miss: krb5.h usability
-Configure miss: krb5.h presence
-Configure miss: krb5.h
-Configure miss: ares_init in -lcares
+Configure miss: whether krb5.h defines KEYTYPE_ARCFOUR_56
 Configure miss: MMDB_open in -lmaxminddb
-Configure miss: ssh_new in -lssh
-Configure miss: whether libssh >= 0.6.0 for sshdump, ciscodump
-Configure miss: nghttp2_hd_inflate_new in -lnghttp2
 Configure miss: struct stat.st_flags
 Configure miss: struct stat.st_birthtime
 Configure miss: struct stat.__st_birthtime
 Configure miss: whether optreset is defined
 Configure miss: bcg729Decoder in -lbcg729
-Configure miss: whether to build sshdump
-Configure miss: whether to build ciscodump

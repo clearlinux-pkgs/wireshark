@@ -4,7 +4,7 @@
 #
 Name     : wireshark
 Version  : 2.6.0
-Release  : 1
+Release  : 2
 URL      : https://1.na.dl.wireshark.org/src/wireshark-2.6.0.tar.xz
 Source0  : https://1.na.dl.wireshark.org/src/wireshark-2.6.0.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
@@ -18,20 +18,30 @@ BuildRequires : bison
 BuildRequires : cmake
 BuildRequires : doxygen
 BuildRequires : flex
-BuildRequires : krb5-dev
 BuildRequires : libgcrypt-dev
 BuildRequires : libgpg-error-dev
 BuildRequires : libpcap-dev
+BuildRequires : nghttp2-dev
+BuildRequires : pkgconfig(com_err)
 BuildRequires : pkgconfig(gdk-pixbuf-2.0)
 BuildRequires : pkgconfig(gio-2.0)
+BuildRequires : pkgconfig(gnutls)
 BuildRequires : pkgconfig(gtk+-3.0)
+BuildRequires : pkgconfig(krb5)
+BuildRequires : pkgconfig(libcap)
+BuildRequires : pkgconfig(libcares)
+BuildRequires : pkgconfig(liblz4)
 BuildRequires : pkgconfig(libnl-3.0)
 BuildRequires : pkgconfig(libnl-genl-3.0)
 BuildRequires : pkgconfig(libnl-route-3.0)
 BuildRequires : pkgconfig(libsmi)
+BuildRequires : pkgconfig(libssh)
 BuildRequires : pkgconfig(libtiff-4)
 BuildRequires : pkgconfig(libxml-2.0)
+BuildRequires : pkgconfig(lua)
+BuildRequires : pkgconfig(portaudio-2.0)
 BuildRequires : pkgconfig(sbc)
+BuildRequires : pkgconfig(snappy)
 BuildRequires : pkgconfig(spandsp)
 BuildRequires : pkgconfig(speexdsp)
 BuildRequires : sed
@@ -94,8 +104,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1525288063
-%configure --disable-static --with-gtk=yes
+export SOURCE_DATE_EPOCH=1525719321
+%reconfigure --disable-static --with-gtk=yes \
+--with-c-ares \
+--with-libcap \
+--with-nghttp2
 make  %{?_smp_mflags}
 
 %check
@@ -106,14 +119,16 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1525288063
+export SOURCE_DATE_EPOCH=1525719321
 rm -rf %{buildroot}
 %make_install
 
 %files
 %defattr(-,root,root,-)
 /usr/lib64/wireshark/extcap/androiddump
+/usr/lib64/wireshark/extcap/ciscodump
 /usr/lib64/wireshark/extcap/randpktdump
+/usr/lib64/wireshark/extcap/sshdump
 /usr/lib64/wireshark/extcap/udpdump
 
 %files bin
