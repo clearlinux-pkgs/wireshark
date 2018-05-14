@@ -4,7 +4,7 @@
 #
 Name     : wireshark
 Version  : 2.6.0
-Release  : 3
+Release  : 4
 URL      : https://1.na.dl.wireshark.org/src/wireshark-2.6.0.tar.xz
 Source0  : https://1.na.dl.wireshark.org/src/wireshark-2.6.0.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
@@ -47,8 +47,10 @@ BuildRequires : pkgconfig(speexdsp)
 BuildRequires : sed
 
 %description
-FIX4x.xml from quickfixengine.org
-FIX5x.xml from http://sourceforge.net/projects/quickfix/files/
+NOTE: this documents the original intent behind libwiretap.  Currently,
+it is being developed solely as a library for reading capture files,
+rather than packet capture.  The list of file formats is also
+out-of-date.
 
 %package bin
 Summary: bin components for the wireshark package.
@@ -104,8 +106,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1525719321
-%reconfigure --disable-static --with-gtk=yes \
+export SOURCE_DATE_EPOCH=1526261692
+%configure --disable-static --with-gtk=yes \
 --with-c-ares \
 --with-libcap \
 --with-nghttp2
@@ -119,7 +121,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1525719321
+export SOURCE_DATE_EPOCH=1526261692
 rm -rf %{buildroot}
 %make_install
 
