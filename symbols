@@ -1963,6 +1963,7 @@ libwsutil.so.9:init_report_message
 libwsutil.so.9:is_default_profile
 libwsutil.so.9:isdigit_string
 libwsutil.so.9:isprint_string
+libwsutil.so.9:isprint_utf8_string
 libwsutil.so.9:jsmn_is_json
 libwsutil.so.9:linear2alaw
 libwsutil.so.9:linear2ulaw
