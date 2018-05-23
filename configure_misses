@@ -14,8 +14,17 @@ Configure miss: whether we can add -Wshorten-64-to-32 to CFLAGS
 Configure miss: whether we should treat compiler warnings as errors
 Configure miss: platform-specific compiler flags
 Configure miss: platform-specific linker flags
-Configure miss: Qt5Core - version >= 5.0.0
-Configure miss: QtCore - version >= 4.8.0
+Configure miss: Qt5Multimedia - version >= 5.0.0
+Configure miss: Qt5MacExtras - version >= 5.0.0
+Configure miss: whether Qt works without -fPIC
+Configure miss: qtchooser
+Configure miss: uic-qt5
+Configure miss: qtchooser
+Configure miss: moc-qt5
+Configure miss: qtchooser
+Configure miss: rcc-qt5
+Configure miss: qtchooser
+Configure miss: lrelease-qt5
 Configure miss: dladdr
 Configure miss: x86_64-generic-linux-gnu-pcap-config
 Configure miss: broken pcap-config
