@@ -1,0 +1,10 @@
+2.6.1
+flex
+doxygen
+libgpg-error-dev
+qttools-extras
+libgcrypt-dev
+qtbase-extras
+krb5-dev
+bison
+libpcap-dev

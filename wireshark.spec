@@ -4,7 +4,7 @@
 #
 Name     : wireshark
 Version  : 2.6.1
-Release  : 6
+Release  : 7
 URL      : https://1.na.dl.wireshark.org/src/wireshark-2.6.1.tar.xz
 Source0  : https://1.na.dl.wireshark.org/src/wireshark-2.6.1.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
@@ -13,11 +13,13 @@ License  : BSD-3-Clause GPL-2.0 GPL-3.0
 Requires: wireshark-bin
 Requires: wireshark-lib
 Requires: wireshark-data
-Requires: wireshark-doc
+Requires: wireshark-license
+Requires: wireshark-man
 BuildRequires : bison
 BuildRequires : cmake
 BuildRequires : doxygen
 BuildRequires : flex
+BuildRequires : krb5-dev
 BuildRequires : libgcrypt-dev
 BuildRequires : libgpg-error-dev
 BuildRequires : libpcap-dev
@@ -51,13 +53,17 @@ BuildRequires : sed
 Patch1: 0001-Qt-Fix-various-missing-header-includes.patch
 
 %description
-FIX4x.xml from quickfixengine.org
-FIX5x.xml from http://sourceforge.net/projects/quickfix/files/
+NOTE: this documents the original intent behind libwiretap.  Currently,
+it is being developed solely as a library for reading capture files,
+rather than packet capture.  The list of file formats is also
+out-of-date.
 
 %package bin
 Summary: bin components for the wireshark package.
 Group: Binaries
 Requires: wireshark-data
+Requires: wireshark-license
+Requires: wireshark-man
 
 %description bin
 bin components for the wireshark package.
@@ -83,21 +89,30 @@ Provides: wireshark-devel
 dev components for the wireshark package.
 
 
-%package doc
-Summary: doc components for the wireshark package.
-Group: Documentation
-
-%description doc
-doc components for the wireshark package.
-
-
 %package lib
 Summary: lib components for the wireshark package.
 Group: Libraries
 Requires: wireshark-data
+Requires: wireshark-license
 
 %description lib
 lib components for the wireshark package.
+
+
+%package license
+Summary: license components for the wireshark package.
+Group: Default
+
+%description license
+license components for the wireshark package.
+
+
+%package man
+Summary: man components for the wireshark package.
+Group: Default
+
+%description man
+man components for the wireshark package.
 
 
 %prep
@@ -109,9 +124,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1527107425
-%configure --disable-static --with-gtk=yes \
---with-c-ares \
+export SOURCE_DATE_EPOCH=1531324842
+%configure --disable-static --with-c-ares \
 --with-libcap \
 --with-nghttp2
 make  %{?_smp_mflags}
@@ -124,8 +138,14 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1527107425
+export SOURCE_DATE_EPOCH=1531324842
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/wireshark
+cp COPYING %{buildroot}/usr/share/doc/wireshark/COPYING
+cp debian/license-text-about-dialog %{buildroot}/usr/share/doc/wireshark/debian_license-text-about-dialog
+cp packaging/wix/COPYING.rtf %{buildroot}/usr/share/doc/wireshark/packaging_wix_COPYING.rtf
+cp cmake/modules/LICENSE.txt %{buildroot}/usr/share/doc/wireshark/cmake_modules_LICENSE.txt
+cp cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/doc/wireshark/cmake_modules_COPYING-CMAKE-SCRIPTS
 %make_install
 
 %files
@@ -151,7 +171,6 @@ rm -rf %{buildroot}
 /usr/bin/text2pcap
 /usr/bin/tshark
 /usr/bin/wireshark
-/usr/bin/wireshark-gtk
 
 %files data
 %defattr(-,root,root,-)
@@ -1091,11 +1110,6 @@ rm -rf %{buildroot}
 /usr/lib64/libwsutil.so
 /usr/lib64/pkgconfig/wireshark.pc
 
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/man/man1/*
-%doc /usr/share/man/man4/*
-
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libwireshark.so.11
@@ -1120,3 +1134,33 @@ rm -rf %{buildroot}
 /usr/lib64/wireshark/plugins/2.6/epan/wimaxasncp.so
 /usr/lib64/wireshark/plugins/2.6/epan/wimaxmacphy.so
 /usr/lib64/wireshark/plugins/2.6/wiretap/usbdump.so
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/wireshark/COPYING
+/usr/share/doc/wireshark/cmake_modules_COPYING-CMAKE-SCRIPTS
+/usr/share/doc/wireshark/cmake_modules_LICENSE.txt
+/usr/share/doc/wireshark/debian_license-text-about-dialog
+/usr/share/doc/wireshark/packaging_wix_COPYING.rtf
+
+%files man
+%defattr(-,root,root,-)
+/usr/share/man/man1/androiddump.1
+/usr/share/man/man1/capinfos.1
+/usr/share/man/man1/captype.1
+/usr/share/man/man1/ciscodump.1
+/usr/share/man/man1/dftest.1
+/usr/share/man/man1/dumpcap.1
+/usr/share/man/man1/editcap.1
+/usr/share/man/man1/mergecap.1
+/usr/share/man/man1/randpkt.1
+/usr/share/man/man1/randpktdump.1
+/usr/share/man/man1/rawshark.1
+/usr/share/man/man1/reordercap.1
+/usr/share/man/man1/sshdump.1
+/usr/share/man/man1/text2pcap.1
+/usr/share/man/man1/tshark.1
+/usr/share/man/man1/udpdump.1
+/usr/share/man/man1/wireshark.1
+/usr/share/man/man4/extcap.4
+/usr/share/man/man4/wireshark-filter.4
