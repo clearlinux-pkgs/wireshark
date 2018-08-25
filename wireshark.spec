@@ -4,12 +4,12 @@
 #
 Name     : wireshark
 Version  : 2.6.2
-Release  : 8
+Release  : 9
 URL      : https://1.na.dl.wireshark.org/src/wireshark-2.6.2.tar.xz
 Source0  : https://1.na.dl.wireshark.org/src/wireshark-2.6.2.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
 Group    : Development/Tools
-License  : BSD-3-Clause GPL-2.0 GPL-3.0
+License  : BSD-2-Clause BSD-3-Clause GPL-2.0 GPL-3.0 ISC MIT Rdisc
 Requires: wireshark-bin
 Requires: wireshark-lib
 Requires: wireshark-data
@@ -21,6 +21,7 @@ BuildRequires : buildreq-cpan
 BuildRequires : doxygen
 BuildRequires : flex
 BuildRequires : krb5-dev
+BuildRequires : libcap-dev
 BuildRequires : libgcrypt-dev
 BuildRequires : libgpg-error-dev
 BuildRequires : libpcap-dev
@@ -49,7 +50,7 @@ BuildRequires : pkgconfig(snappy)
 BuildRequires : pkgconfig(spandsp)
 BuildRequires : pkgconfig(speexdsp)
 BuildRequires : qtbase-extras
-BuildRequires : qttools-extras
+BuildRequires : qttools-dev
 BuildRequires : sed
 
 %description
@@ -89,6 +90,15 @@ Provides: wireshark-devel
 dev components for the wireshark package.
 
 
+%package doc
+Summary: doc components for the wireshark package.
+Group: Documentation
+Requires: wireshark-man
+
+%description doc
+doc components for the wireshark package.
+
+
 %package lib
 Summary: lib components for the wireshark package.
 Group: Libraries
@@ -123,7 +133,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1531958061
+export SOURCE_DATE_EPOCH=1535208131
 %configure --disable-static --with-c-ares \
 --with-libcap \
 --with-nghttp2
@@ -137,14 +147,15 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1531958061
+export SOURCE_DATE_EPOCH=1535208131
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/wireshark
 cp COPYING %{buildroot}/usr/share/doc/wireshark/COPYING
+cp cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/doc/wireshark/cmake_modules_COPYING-CMAKE-SCRIPTS
+cp cmake/modules/LICENSE.txt %{buildroot}/usr/share/doc/wireshark/cmake_modules_LICENSE.txt
+cp debian/copyright %{buildroot}/usr/share/doc/wireshark/debian_copyright
 cp debian/license-text-about-dialog %{buildroot}/usr/share/doc/wireshark/debian_license-text-about-dialog
 cp packaging/wix/COPYING.rtf %{buildroot}/usr/share/doc/wireshark/packaging_wix_COPYING.rtf
-cp cmake/modules/LICENSE.txt %{buildroot}/usr/share/doc/wireshark/cmake_modules_LICENSE.txt
-cp cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/doc/wireshark/cmake_modules_COPYING-CMAKE-SCRIPTS
 %make_install
 
 %files
@@ -1108,6 +1119,10 @@ cp cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/doc/wireshark/cmak
 /usr/lib64/libwscodecs.so
 /usr/lib64/libwsutil.so
 /usr/lib64/pkgconfig/wireshark.pc
+
+%files doc
+%defattr(0644,root,root,0755)
+%doc /usr/share/doc/wireshark/*
 
 %files lib
 %defattr(-,root,root,-)
