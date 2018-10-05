@@ -2,3 +2,4 @@
 # picked up automatically. One name per line, no whitespace.
 nghttp2-dev
 qttools-dev
+snappy-dev

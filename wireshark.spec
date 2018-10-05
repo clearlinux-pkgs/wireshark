@@ -4,17 +4,17 @@
 #
 Name     : wireshark
 Version  : 2.6.3
-Release  : 10
+Release  : 11
 URL      : https://1.na.dl.wireshark.org/src/wireshark-2.6.3.tar.xz
 Source0  : https://1.na.dl.wireshark.org/src/wireshark-2.6.3.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause GPL-2.0 GPL-3.0 ISC MIT Rdisc
-Requires: wireshark-bin
-Requires: wireshark-lib
-Requires: wireshark-data
-Requires: wireshark-license
-Requires: wireshark-man
+Requires: wireshark-bin = %{version}-%{release}
+Requires: wireshark-data = %{version}-%{release}
+Requires: wireshark-lib = %{version}-%{release}
+Requires: wireshark-license = %{version}-%{release}
+Requires: wireshark-man = %{version}-%{release}
 BuildRequires : bison
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-cpan
@@ -46,11 +46,12 @@ BuildRequires : pkgconfig(libxml-2.0)
 BuildRequires : pkgconfig(lua)
 BuildRequires : pkgconfig(portaudio-2.0)
 BuildRequires : pkgconfig(sbc)
-BuildRequires : pkgconfig(snappy)
 BuildRequires : pkgconfig(spandsp)
 BuildRequires : pkgconfig(speexdsp)
+BuildRequires : qtbase-extras
 BuildRequires : qttools-dev
 BuildRequires : sed
+BuildRequires : snappy-dev
 
 %description
 WiX installer for Wireshark
@@ -61,9 +62,9 @@ before doing so.
 %package bin
 Summary: bin components for the wireshark package.
 Group: Binaries
-Requires: wireshark-data
-Requires: wireshark-license
-Requires: wireshark-man
+Requires: wireshark-data = %{version}-%{release}
+Requires: wireshark-license = %{version}-%{release}
+Requires: wireshark-man = %{version}-%{release}
 
 %description bin
 bin components for the wireshark package.
@@ -80,29 +81,20 @@ data components for the wireshark package.
 %package dev
 Summary: dev components for the wireshark package.
 Group: Development
-Requires: wireshark-lib
-Requires: wireshark-bin
-Requires: wireshark-data
-Provides: wireshark-devel
+Requires: wireshark-lib = %{version}-%{release}
+Requires: wireshark-bin = %{version}-%{release}
+Requires: wireshark-data = %{version}-%{release}
+Provides: wireshark-devel = %{version}-%{release}
 
 %description dev
 dev components for the wireshark package.
 
 
-%package doc
-Summary: doc components for the wireshark package.
-Group: Documentation
-Requires: wireshark-man
-
-%description doc
-doc components for the wireshark package.
-
-
 %package lib
 Summary: lib components for the wireshark package.
 Group: Libraries
-Requires: wireshark-data
-Requires: wireshark-license
+Requires: wireshark-data = %{version}-%{release}
+Requires: wireshark-license = %{version}-%{release}
 
 %description lib
 lib components for the wireshark package.
@@ -132,7 +124,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535693407
+export SOURCE_DATE_EPOCH=1538757057
 %configure --disable-static --with-c-ares \
 --with-libcap \
 --with-nghttp2
@@ -146,15 +138,15 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1535693407
+export SOURCE_DATE_EPOCH=1538757057
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/wireshark
-cp COPYING %{buildroot}/usr/share/doc/wireshark/COPYING
-cp cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/doc/wireshark/cmake_modules_COPYING-CMAKE-SCRIPTS
-cp cmake/modules/LICENSE.txt %{buildroot}/usr/share/doc/wireshark/cmake_modules_LICENSE.txt
-cp debian/copyright %{buildroot}/usr/share/doc/wireshark/debian_copyright
-cp debian/license-text-about-dialog %{buildroot}/usr/share/doc/wireshark/debian_license-text-about-dialog
-cp packaging/wix/COPYING.rtf %{buildroot}/usr/share/doc/wireshark/packaging_wix_COPYING.rtf
+mkdir -p %{buildroot}/usr/share/package-licenses/wireshark
+cp COPYING %{buildroot}/usr/share/package-licenses/wireshark/COPYING
+cp cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/wireshark/cmake_modules_COPYING-CMAKE-SCRIPTS
+cp cmake/modules/LICENSE.txt %{buildroot}/usr/share/package-licenses/wireshark/cmake_modules_LICENSE.txt
+cp debian/copyright %{buildroot}/usr/share/package-licenses/wireshark/debian_copyright
+cp debian/license-text-about-dialog %{buildroot}/usr/share/package-licenses/wireshark/debian_license-text-about-dialog
+cp packaging/wix/COPYING.rtf %{buildroot}/usr/share/package-licenses/wireshark/packaging_wix_COPYING.rtf
 %make_install
 
 %files
@@ -202,6 +194,7 @@ cp packaging/wix/COPYING.rtf %{buildroot}/usr/share/doc/wireshark/packaging_wix_
 /usr/share/icons/hicolor/64x64/mimetypes/application-wireshark-doc.png
 /usr/share/icons/hicolor/scalable/apps/wireshark.svg
 /usr/share/mime/packages/wireshark.xml
+/usr/share/package-licenses/wireshark/debian_copyright
 /usr/share/wireshark/AUTHORS-SHORT
 /usr/share/wireshark/COPYING
 /usr/share/wireshark/androiddump.html
@@ -1119,10 +1112,6 @@ cp packaging/wix/COPYING.rtf %{buildroot}/usr/share/doc/wireshark/packaging_wix_
 /usr/lib64/libwsutil.so
 /usr/lib64/pkgconfig/wireshark.pc
 
-%files doc
-%defattr(0644,root,root,0755)
-%doc /usr/share/doc/wireshark/*
-
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libwireshark.so.10
@@ -1149,15 +1138,15 @@ cp packaging/wix/COPYING.rtf %{buildroot}/usr/share/doc/wireshark/packaging_wix_
 /usr/lib64/wireshark/plugins/2.6/wiretap/usbdump.so
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/wireshark/COPYING
-/usr/share/doc/wireshark/cmake_modules_COPYING-CMAKE-SCRIPTS
-/usr/share/doc/wireshark/cmake_modules_LICENSE.txt
-/usr/share/doc/wireshark/debian_license-text-about-dialog
-/usr/share/doc/wireshark/packaging_wix_COPYING.rtf
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/wireshark/COPYING
+/usr/share/package-licenses/wireshark/cmake_modules_COPYING-CMAKE-SCRIPTS
+/usr/share/package-licenses/wireshark/cmake_modules_LICENSE.txt
+/usr/share/package-licenses/wireshark/debian_license-text-about-dialog
+/usr/share/package-licenses/wireshark/packaging_wix_COPYING.rtf
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/man1/androiddump.1
 /usr/share/man/man1/capinfos.1
 /usr/share/man/man1/captype.1
