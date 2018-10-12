@@ -25,7 +25,6 @@ Configure miss: qtchooser
 Configure miss: rcc-qt5
 Configure miss: qtchooser
 Configure miss: lrelease-qt5
-Configure miss: dladdr
 Configure miss: x86_64-generic-linux-gnu-pcap-config
 Configure miss: broken pcap-config
 Configure miss: pcap_open
