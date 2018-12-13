@@ -1,4 +1,4 @@
-2.6.5
+2.9.0
 bison
 doxygen
 flex
@@ -7,5 +7,6 @@ libcap-dev
 libgcrypt-dev
 libgpg-error-dev
 libpcap-dev
+lua-dev
 qtbase-extras
 qttools-extras

@@ -3,3 +3,8 @@
 nghttp2-dev
 qttools-dev
 snappy-dev
+buildreq-kde
+libgpg-error-dev
+sbc-dev
+flex
+bison
