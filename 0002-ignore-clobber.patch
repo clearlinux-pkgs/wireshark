@@ -1,0 +1,10 @@
+--- a/CMakeLists.txt~	2019-01-31 10:22:45.733111775 -0800
++++ b/CMakeLists.txt	2019-01-31 10:23:28.157111371 -0800
+@@ -542,6 +542,7 @@
+ 		# The following are for C and C++
+ 		# -O<X> and -g get set by the CMAKE_BUILD_TYPE
+ 		-Wall
++		-Wno-clobbered
+ 		-Wextra
+ 		-Wendif-labels
+ 		-Wpointer-arith

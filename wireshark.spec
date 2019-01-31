@@ -4,7 +4,7 @@
 #
 Name     : wireshark
 Version  : 2.9.0
-Release  : 16
+Release  : 17
 URL      : https://1.na.dl.wireshark.org/src/wireshark-2.9.0.tar.xz
 Source0  : https://1.na.dl.wireshark.org/src/wireshark-2.9.0.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
@@ -21,6 +21,8 @@ BuildRequires : buildreq-cpan
 BuildRequires : buildreq-kde
 BuildRequires : doxygen
 BuildRequires : flex
+BuildRequires : krb5-dev
+BuildRequires : libcap-dev
 BuildRequires : libgcrypt-dev
 BuildRequires : libgpg-error-dev
 BuildRequires : libpcap-dev
@@ -45,11 +47,14 @@ BuildRequires : pkgconfig(libsystemd)
 BuildRequires : pkgconfig(libtiff-4)
 BuildRequires : pkgconfig(libxml-2.0)
 BuildRequires : pkgconfig(lua)
+BuildRequires : pkgconfig(lua52)
 BuildRequires : pkgconfig(portaudio-2.0)
 BuildRequires : python3
+BuildRequires : qtbase-extras
 BuildRequires : qttools-dev
 BuildRequires : sbc-dev
 BuildRequires : snappy-dev
+Patch1: 0002-ignore-clobber.patch
 
 %description
 NOTE: this documents the original intent behind libwiretap.  Currently,
@@ -116,17 +121,18 @@ man components for the wireshark package.
 
 %prep
 %setup -q -n wireshark-2.9.0
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1544716393
+export SOURCE_DATE_EPOCH=1548959678
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %check
@@ -137,7 +143,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1544716393
+export SOURCE_DATE_EPOCH=1548959678
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/wireshark
 cp COPYING %{buildroot}/usr/share/package-licenses/wireshark/COPYING
@@ -213,6 +219,7 @@ popd
 /usr/share/wireshark/cfilters
 /usr/share/wireshark/ciscodump.html
 /usr/share/wireshark/colorfilters
+/usr/share/wireshark/console.lua
 /usr/share/wireshark/dfilters
 /usr/share/wireshark/dftest.html
 /usr/share/wireshark/diameter/AlcatelLucent.xml
@@ -243,6 +250,7 @@ popd
 /usr/share/wireshark/diameter/sip.xml
 /usr/share/wireshark/diameter/sunping.xml
 /usr/share/wireshark/dpauxmon.html
+/usr/share/wireshark/dtd_gen.lua
 /usr/share/wireshark/dtds/dc.dtd
 /usr/share/wireshark/dtds/itunes.dtd
 /usr/share/wireshark/dtds/mscml.dtd
@@ -266,6 +274,7 @@ popd
 /usr/share/wireshark/help/getting_started.txt
 /usr/share/wireshark/help/overview.txt
 /usr/share/wireshark/help/toc
+/usr/share/wireshark/init.lua
 /usr/share/wireshark/manuf
 /usr/share/wireshark/mergecap.html
 /usr/share/wireshark/pdml2html.xsl

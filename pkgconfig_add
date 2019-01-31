@@ -11,4 +11,5 @@ libssh
 liblz4
 libtiff-4
 lua
+lua52
 portaudio-2.0

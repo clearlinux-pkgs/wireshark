@@ -4,8 +4,8 @@ libQt5Multimedia.so.5
 libQt5PrintSupport.so.5
 libQt5Widgets.so.5
 libc.so.6
-libcap.so.2
 libcares.so.2
+libdl.so.2
 libgcc_s.so.1
 libgcrypt.so.20
 libglib-2.0.so.0
