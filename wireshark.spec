@@ -4,9 +4,9 @@
 #
 Name     : wireshark
 Version  : 2.9.0
-Release  : 17
-URL      : https://1.na.dl.wireshark.org/src/wireshark-2.9.0.tar.xz
-Source0  : https://1.na.dl.wireshark.org/src/wireshark-2.9.0.tar.xz
+Release  : 18
+URL      : https://www.wireshark.org/download/src/all-versions/wireshark-2.9.0.tar.xz
+Source0  : https://www.wireshark.org/download/src/all-versions/wireshark-2.9.0.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause GPL-2.0 GPL-3.0 ISC MIT Rdisc
@@ -55,6 +55,10 @@ BuildRequires : qttools-dev
 BuildRequires : sbc-dev
 BuildRequires : snappy-dev
 Patch1: 0002-ignore-clobber.patch
+Patch2: CVE-2019-9208.patch
+Patch3: CVE-2019-9209.patch
+Patch4: prepare-for-cve-2019-9214.patch
+Patch5: CVE-2019-9214.patch
 
 %description
 NOTE: this documents the original intent behind libwiretap.  Currently,
@@ -122,15 +126,24 @@ man components for the wireshark package.
 %prep
 %setup -q -n wireshark-2.9.0
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1548959678
+export SOURCE_DATE_EPOCH=1551386888
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
+export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 %cmake ..
 make  %{?_smp_mflags} VERBOSE=1
 popd
@@ -143,7 +156,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1548959678
+export SOURCE_DATE_EPOCH=1551386888
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/wireshark
 cp COPYING %{buildroot}/usr/share/package-licenses/wireshark/COPYING
