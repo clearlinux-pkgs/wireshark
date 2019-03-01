@@ -4,7 +4,7 @@
 #
 Name     : wireshark
 Version  : 3.0.0
-Release  : 19
+Release  : 20
 URL      : https://www.wireshark.org/download/src/all-versions/wireshark-3.0.0.tar.xz
 Source0  : https://www.wireshark.org/download/src/all-versions/wireshark-3.0.0.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
@@ -19,13 +19,18 @@ BuildRequires : bison
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-cpan
 BuildRequires : buildreq-kde
+BuildRequires : doxygen
 BuildRequires : extra-cmake-modules pkgconfig(glib-2.0)
 BuildRequires : flex
 BuildRequires : gettext-dev
 BuildRequires : git
+BuildRequires : krb5-dev
+BuildRequires : libcap-dev
 BuildRequires : libgcrypt-dev
 BuildRequires : libgpg-error-dev
+BuildRequires : libpcap-dev
 BuildRequires : libxml2-dev
+BuildRequires : lua-dev
 BuildRequires : nghttp2-dev
 BuildRequires : perl
 BuildRequires : pkg-config
@@ -50,9 +55,11 @@ BuildRequires : pkgconfig(lua52)
 BuildRequires : pkgconfig(portaudio-2.0)
 BuildRequires : python3
 BuildRequires : python3-dev
+BuildRequires : qtbase-extras
 BuildRequires : qttools-dev
 BuildRequires : sbc-dev
 BuildRequires : snappy-dev
+BuildRequires : systemd-dev
 BuildRequires : zlib-dev
 Patch1: 0002-ignore-clobber.patch
 
@@ -142,7 +149,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1551448948
+export SOURCE_DATE_EPOCH=1551450814
 mkdir -p clr-build
 pushd clr-build
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -161,7 +168,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1551448948
+export SOURCE_DATE_EPOCH=1551450814
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/wireshark
 cp COPYING %{buildroot}/usr/share/package-licenses/wireshark/COPYING
@@ -189,6 +196,7 @@ popd
 /usr/lib64/wireshark/extcap/ciscodump
 /usr/lib64/wireshark/extcap/dpauxmon
 /usr/lib64/wireshark/extcap/randpktdump
+/usr/lib64/wireshark/extcap/sdjournal
 /usr/lib64/wireshark/extcap/sshdump
 /usr/lib64/wireshark/extcap/udpdump
 
@@ -196,10 +204,12 @@ popd
 %defattr(-,root,root,-)
 /usr/bin/capinfos
 /usr/bin/captype
+/usr/bin/dumpcap
 /usr/bin/editcap
 /usr/bin/idl2wrs
 /usr/bin/mergecap
 /usr/bin/randpkt
+/usr/bin/rawshark
 /usr/bin/reordercap
 /usr/bin/sharkd
 /usr/bin/text2pcap
@@ -1168,6 +1178,8 @@ popd
 /usr/share/man/man1/randpktdump.1
 /usr/share/man/man1/rawshark.1
 /usr/share/man/man1/reordercap.1
+/usr/share/man/man1/sdjournal.1
+/usr/share/man/man1/sdjournal.html
 /usr/share/man/man1/sshdump.1
 /usr/share/man/man1/text2pcap.1
 /usr/share/man/man1/tshark.1

@@ -10,3 +10,4 @@ libpcap-dev
 lua-dev
 qtbase-extras
 qttools-extras
+systemd-dev
