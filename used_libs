@@ -18,12 +18,9 @@ libm.so.6
 libnghttp2.so.14
 libnl-3.so.200
 libnl-genl-3.so.200
-libnl-route-3.so.200
-libpcap.so.1
 libsbc.so.1
 libsnappy.so.1
 libssh.so.4
 libstdc++.so.6
-libsystemd.so.0
 libxml2.so.2
 libz.so.1
