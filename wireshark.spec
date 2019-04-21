@@ -4,7 +4,7 @@
 #
 Name     : wireshark
 Version  : 3.0.1
-Release  : 22
+Release  : 23
 URL      : https://www.wireshark.org/download/src/all-versions/wireshark-3.0.1.tar.xz
 Source0  : https://www.wireshark.org/download/src/all-versions/wireshark-3.0.1.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
@@ -24,10 +24,13 @@ BuildRequires : extra-cmake-modules pkgconfig(glib-2.0)
 BuildRequires : flex
 BuildRequires : gettext-dev
 BuildRequires : git
+BuildRequires : krb5-dev
+BuildRequires : libcap-dev
 BuildRequires : libgcrypt-dev
 BuildRequires : libgpg-error-dev
 BuildRequires : libpcap-dev
 BuildRequires : libxml2-dev
+BuildRequires : lua-dev
 BuildRequires : nghttp2-dev
 BuildRequires : perl
 BuildRequires : pkg-config
@@ -52,6 +55,7 @@ BuildRequires : pkgconfig(lua52)
 BuildRequires : pkgconfig(portaudio-2.0)
 BuildRequires : python3
 BuildRequires : python3-dev
+BuildRequires : qtbase-extras
 BuildRequires : qttools-dev
 BuildRequires : sbc-dev
 BuildRequires : snappy-dev
@@ -144,13 +148,13 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1554785540
+export SOURCE_DATE_EPOCH=1555856975
 mkdir -p clr-build
 pushd clr-build
-export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CFLAGS="$CFLAGS -fcf-protection=full -fstack-protector-strong "
+export FCFLAGS="$CFLAGS -fcf-protection=full -fstack-protector-strong "
+export FFLAGS="$CFLAGS -fcf-protection=full -fstack-protector-strong "
+export CXXFLAGS="$CXXFLAGS -fcf-protection=full -fstack-protector-strong "
 %cmake ..
 make  %{?_smp_mflags}
 popd
@@ -163,7 +167,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1554785540
+export SOURCE_DATE_EPOCH=1555856975
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/wireshark
 cp COPYING %{buildroot}/usr/share/package-licenses/wireshark/COPYING
