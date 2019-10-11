@@ -1,7 +1,4 @@
-Wireshark 3.1.0 Release Notes
-
- This is an experimental release intended to test new features for
- Wireshark 3.2.
+Wireshark 3.0.5 Release Notes
 
  What is Wireshark?
 
@@ -10,83 +7,79 @@ Wireshark 3.1.0 Release Notes
 
  What’s New
 
-  Many improvements have been made. See the “New and Updated Features”
-  section below for more details.
+  The Windows installers now ship with Qt 5.12.5. They previously
+  shipped with Qt 5.12.4.
 
-  Windows .msi packages are now signed using SHA-2[1]. .exe installers
-  are still dual-signed using SHA-1 and SHA-2.
+  If you have Npcap 0.994 or 0.995 installed, your system might crash
+  when upgrading. We recommend that you uninstall these versions
+  manually prior to installing Wireshark. See Npcap bugs 1591[1] and
+  1675[2] for more details. You can uninstall either version manually by
+  doing the following:
+
+   1. Open a command or PowerShell prompt as Administrator and run
+      sc.exe config npcap start=disabled.
+
+   2. Run sc.exe config npf start=disabled. This will fail if WinPcap
+      compatibility mode isn’t enabled, but is otherwise harmless.
+
+   3. Reboot (optional).
+
+   4. Open “Programs and Features” in the Control Panel or “Apps &
+      features” in Settings and uninstall Npcap.
+
+   5. Open “Device Manager” (devmgmt.msc) in the Control Panel and
+      expand the “Network adapters” section. Uninstall each “Npcap
+      Loopback Adapter” that you find.
+
+  Bug Fixes
+
+   The following vulnerabilities have been fixed:
+
+   The following bugs have been fixed:
+
+     • Qt interface crashes on a profile with packet list only. Bug
+       16048[3].
+
+     • Wireshark 3.0.4 does not start on macOS 10.13 after an upgrade
+       from 3.0.3. Bug 16050[4].
+
+     • NET-SNMP EngineID Length handling Warning. Bug 16051[5].
+
+     • Upgrade from Wireshark 3.0.2/3.0.3 to 3.0.4/later is confusing
+       and may not complete properly. Bug 16052[6].
+
+     • Crash SIGSEGV when decrypting IEEE 802.11 EAP re-authentications.
+       Bug 16058[7].
 
   New and Updated Features
 
-   The following features are new (or have been significantly updated)
-   since version 3.0.0:
-
-     • Drag&Drop a field to a column header to create a column for that
-       field, or to the display filter input to create a display filter.
-       If a display filter is applied, the new filter can be added using
-       the same rules as "Apply Filter"
-
-     • Drag&Drop a column entry to the display filter to create a filter
-       for it
-
-     • Import profiles from a .zip archive or an existing directory
-
-     • Dark mode support on macOS and dark theme support on other
-       platforms has been improved.
-
-     • Brotli decompression support in HTTP/HTTP2 (requires the brotli
-       library).
-
-     • The build system now checks for a SpeexDSP system library
-       installation. The bundled Speex resampler code is still provided
-       as a fallback.
-
-     • WireGuard decryption can now be enabled through keys embedded in
-       a pcapng in addition to the existing key log preference (Bug
-       15571[2]).
-
-     • A new tap for extracting credentials from the capture file has
-       been added. It can be accessed through the "-z credentials"
-       option in tshark or from the "tools" menu in Wireshark.
-
-     • Editcap can now split files on floating point intervals.
+   There are no new features in this release.
 
   New Protocol Support
 
-   3GPP BICC MST (BICC-MST), 3GPP log packet (LOG3GPP), 3GPP/GSM Cell
-   Broadcast Service Protocol (cbsp), Bluetooth Mesh Beacon, Bluetooth
-   Mesh PB-ADV, Bluetooth Mesh Provisioning PDU, Bluetooth Mesh Proxy,
-   CableLabs Layer-3 Protocol IEEE EtherType 0xb4e3 (CL3), DCOM
-   IProvideClassInfo, DCOM ITypeInfo, Distributed Replicated Block
-   Device (DRBD), Dual Channel Wi-Fi (CL3DCW), EBHSCR Protocol (EBHSCR),
-   EERO Protocol (EERO), evolved Common Public Radio Interface (eCPRI),
-   File Server Remote VSS Protocol (FSRVP), FTDI FT USB Bridging Devices
-   (FTDI FT), Graylog Extended Log Format over UDP (GELF), GSM/3GPP CBSP
-   (Cell Broadcast Service Protocol), MIDI System Exclusive DigiTech
-   (SYSEX DigiTech), Network Controller Sideband Interface (NCSI), NR
-   Positioning Protocol A (NRPPa) TS 38.455, and NVM Express over
-   Fabrics for TCP (nvme-tcp)
+   There are no new protocols in this release.
 
   Updated Protocol Support
 
-   Too many protocols have been updated to list here.
-
   New and Updated Capture File Support
 
-   3gpp phone, Android Logcat Text, Ascend, Candump, Endace ERF,
-   NetScaler, pcapng, and Savvius *Peek
+   There is no new or updated capture file support in this release.
+
+  New and Updated Capture Interfaces support
+
+   There is no new or updated capture file support in this release.
 
  Getting Wireshark
 
   Wireshark source code and installation packages are available from
-  https://www.wireshark.org/download.html[3].
+  https://www.wireshark.org/download.html[8].
 
   Vendor-supplied Packages
 
    Most Linux and Unix vendors supply their own Wireshark packages. You
    can usually install or upgrade Wireshark using the package management
    system specific to that platform. A list of third-party packages can
-   be found on the download page[4] on the Wireshark web site.
+   be found on the download page[9] on the Wireshark web site.
 
  File Locations
 
@@ -98,33 +91,37 @@ Wireshark 3.1.0 Release Notes
  Getting Help
 
   The User’s Guide, manual pages and various other documentation can be
-  found at https://www.wireshark.org/docs/[5]
+  found at https://www.wireshark.org/docs/[10]
 
-  Community support is available on Wireshark’s Q&A site[6] and on the
+  Community support is available on Wireshark’s Q&A site[11] and on the
   wireshark-users mailing list. Subscription information and archives
-  for all of Wireshark’s mailing lists can be found on the web site[7].
+  for all of Wireshark’s mailing lists can be found on the web site[12].
 
-  Bugs and feature requests can be reported on the bug tracker[8].
+  Bugs and feature requests can be reported on the bug tracker[13].
 
   Official Wireshark training and certification are available from
-  Wireshark University[9].
+  Wireshark University[14].
 
  Frequently Asked Questions
 
-  A complete FAQ is available on the Wireshark web site[10].
+  A complete FAQ is available on the Wireshark web site[15].
 
-  Last updated 2019-07-25 18:44:33 UTC
+  Last updated 2019-09-20 17:51:26 UTC
 
  References
 
-   1. https://support.microsoft.com/en-us/help/4472027/2019-sha-2-code-s
-  igning-support-requirement-for-windows-and-wsus
-   2. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=15571
-   3. https://www.wireshark.org/download.html
-   4. https://www.wireshark.org/download.html#thirdparty
-   5. https://www.wireshark.org/docs/
-   6. https://ask.wireshark.org/
-   7. https://www.wireshark.org/lists/
-   8. https://bugs.wireshark.org/
-   9. https://www.wiresharktraining.com/
-  10. https://www.wireshark.org/faq.html
+   1. https://github.com/nmap/nmap/issues/1591
+   2. https://github.com/nmap/nmap/issues/1675
+   3. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16048
+   4. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16050
+   5. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16051
+   6. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16052
+   7. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16058
+   8. https://www.wireshark.org/download.html
+   9. https://www.wireshark.org/download.html#thirdparty
+  10. https://www.wireshark.org/docs/
+  11. https://ask.wireshark.org/
+  12. https://www.wireshark.org/lists/
+  13. https://bugs.wireshark.org/
+  14. http://www.wiresharktraining.com/
+  15. https://www.wireshark.org/faq.html
