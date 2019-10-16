@@ -4,7 +4,7 @@
 #
 Name     : wireshark
 Version  : 3.0.5
-Release  : 27
+Release  : 28
 URL      : https://www.wireshark.org/download/src/all-versions/wireshark-3.0.5.tar.xz
 Source0  : https://www.wireshark.org/download/src/all-versions/wireshark-3.0.5.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
@@ -19,15 +19,19 @@ BuildRequires : bison
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-cpan
 BuildRequires : buildreq-kde
+BuildRequires : collectd-dev
 BuildRequires : doxygen
 BuildRequires : extra-cmake-modules pkgconfig(glib-2.0)
 BuildRequires : flex
 BuildRequires : gettext-dev
 BuildRequires : git
+BuildRequires : krb5-dev
+BuildRequires : libcap-dev
 BuildRequires : libgcrypt-dev
 BuildRequires : libgpg-error-dev
 BuildRequires : libpcap-dev
 BuildRequires : libxml2-dev
+BuildRequires : lua-dev
 BuildRequires : nghttp2-dev
 BuildRequires : perl
 BuildRequires : pkg-config
@@ -52,6 +56,7 @@ BuildRequires : pkgconfig(lua52)
 BuildRequires : pkgconfig(portaudio-2.0)
 BuildRequires : python3
 BuildRequires : python3-dev
+BuildRequires : qtbase-extras
 BuildRequires : qttools-dev
 BuildRequires : sbc-dev
 BuildRequires : snappy-dev
@@ -60,10 +65,14 @@ BuildRequires : zlib-dev
 Patch1: 0002-ignore-clobber.patch
 
 %description
-NOTE: this documents the original intent behind libwiretap.  Currently,
-it is being developed solely as a library for reading capture files,
-rather than packet capture.  The list of file formats is also
-out-of-date.
+(This is a consolidation of documentation written by stig, sahlberg, and gram)
+What is the display filter system?
+==================================
+The display filter system allows the user to select packets by testing
+for values in the proto_tree that Wireshark constructs for that packet.
+Every proto_item in the proto_tree has an 'abbrev' field
+and a 'type' field, which tells the display filter engine the name
+of the field and its type (what values it can hold).
 
 %package bin
 Summary: bin components for the wireshark package.
@@ -90,6 +99,7 @@ Requires: wireshark-lib = %{version}-%{release}
 Requires: wireshark-bin = %{version}-%{release}
 Requires: wireshark-data = %{version}-%{release}
 Provides: wireshark-devel = %{version}-%{release}
+Requires: wireshark = %{version}-%{release}
 Requires: wireshark = %{version}-%{release}
 
 %description dev
@@ -140,17 +150,18 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570831262
+export SOURCE_DATE_EPOCH=1571257057
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CFLAGS="$CFLAGS -O3 -fcf-protection=full -ffat-lto-objects -flto=4 -fstack-protector-strong "
+export FCFLAGS="$CFLAGS -O3 -fcf-protection=full -ffat-lto-objects -flto=4 -fstack-protector-strong "
+export FFLAGS="$CFLAGS -O3 -fcf-protection=full -ffat-lto-objects -flto=4 -fstack-protector-strong "
+export CXXFLAGS="$CXXFLAGS -O3 -fcf-protection=full -ffat-lto-objects -flto=4 -fstack-protector-strong "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
@@ -163,7 +174,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1570831262
+export SOURCE_DATE_EPOCH=1571257057
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/wireshark
 cp %{_builddir}/wireshark-3.0.5/COPYING %{buildroot}/usr/share/package-licenses/wireshark/269ab3f57e63fefe9f3aa074305a89c4526c5226

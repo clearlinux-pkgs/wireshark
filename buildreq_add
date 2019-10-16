@@ -8,3 +8,4 @@ libgpg-error-dev
 sbc-dev
 flex
 bison
+collectd-dev
