@@ -1,4 +1,4 @@
-Wireshark 3.0.7 Release Notes
+Wireshark 3.2.0 Release Notes
 
  What is Wireshark?
 
@@ -7,93 +7,179 @@ Wireshark 3.0.7 Release Notes
 
  What’s New
 
-  The Windows and macOS installers now ship with Qt 5.12.6. They
-  previously shipped with Qt 5.12.5.
+  This is the last release branch with official support for Windows 7
+  and Windows Server 2008 R2.
 
-  Bug Fixes
-
-   The following vulnerabilities have been fixed:
-
-     • wnpa-sec-2019-22[1] CMS dissector crash. Bug 15961[2].
-       CVE-2019-19553[3].
-
-   The following bugs have been fixed:
-
-     • ws_pipe_wait_for_pipe() can wait on closed handles. Bug 15696[4].
-
-     • Support for 11ax in PEEKREMOTE. Bug 15740[5].
-
-     • The temporary file …​ could not be opened: Invalid argument. Bug
-       15751[6].
-
-     • Reassembling of the two TLS records is not working correctly. Bug
-       16109[7].
-
-     • Display Filter Area: Dropdown Missing pkt_comment and
-       tcp.options.sack_perm (likely others). Bug 16130[8].
-
-     • Display Filter autocompletion should be disabled. Bug 16132[9].
-
-     • BGP Linkstate IP Reachability information is incorrect. Bug
-       16144[10].
-
-     • NGAP: ExpectedUEActivityBehaviour decode error. Bug 16145[11].
-
-     • HomePlug AV dissector: MMTYPE and FMI fields are dissected
-       incorrectly. Bug 16158[12].
-
-     • JPEG files cannot be saved on Windows with french language. Bug
-       16165[13].
-
-     • X11 --display interpreted as --display-filter which maps to -Y
-       option. Bug 16167[14].
-
-     • "Create new file automatically after" not working with extcap.
-       Bug 16178[15].
-
-     • Encrypted TLS alerts sometimes listed as decrypted. Bug
-       16180[16].
-
-     • The "Remove Wireshark from the system path" package has "Add
-       Wireshark to the system PATH" as its title. Bug 16200[17].
-
-     • tshark -T ek -x causes get_field_data: code should not be
-       reached. Bug 16218[18].
-
-     • Crash on Go → Next/Previous Packet in Conversation when no packet
-       is selected. Bug 16228[19].
+  Many improvements have been made. See the “New and Updated Features”
+  section below for more details.
 
   New and Updated Features
 
-   There are no new features in this release.
+   The following features are new (or have been significantly updated)
+   since version 3.2.0rc2:
+
+     • Minor bug fixes.
+
+   The following features are new (or have been significantly updated)
+   since version 3.2.0rc1:
+
+     • Minor bug fixes.
+
+   The following features are new (or have been significantly updated)
+   since version 3.1.1:
+
+     • Miscellaneous UI fixes and updates.
+
+     • The macOS installer now ships with Qt 5.12.6. It previously
+       shipped with Qt 5.12.5.
+
+   The following features are new (or have been significantly updated)
+   since version 3.1.0:
+
+     • Automatic updates are supported on macOS.
+
+     • You can now select multiple packets in the packet list at the
+       same time
+
+     • They can be exported as Text by “Ctrl+C” or “Cmd+C” and the
+       corresponding menu in “Edit › Copy › As …​”
+
+     • They can be marked/unmarked or ignored/unignored at the same time
+
+     • They can be exported and printed using the corresponding menu
+       entries “File › Export Specified Packets”, “File › Export Packet
+       Dissections” and “File › Print”
+
+   You can now follow HTTP/2 and QUIC streams.
+
+   You can once again mark and unmark packets using the middle mouse
+   button. This feature went missing around 2009 or so.
+
+   The Windows packages are now built using Microsoft Visual Studio
+   2019.
+
+   IOGraph automatically adds a graph for the selected display filter if
+   no previous graph exists
+
+   Action buttons for the display filter bar may be aligned left via the
+   context menu
+
+     • The "Expression…​" toolbar entry has been moved to "Analyze ›
+       Display filter Expression …​" as well as to the context menu of
+       the display filter toolbar
+
+   Allow extcaps to be loaded from the personal configuration directory
+
+   The Wireshark 3.1.0 Windows installers ship with Qt 5.12.6. Previous
+   installers shipped with Qt 5.12.4.
+
+   The following features are new (or have been significantly updated)
+   since version 3.0.0:
+
+     • You can drag and drop a field to a column header to create a
+       column for that field, or to the display filter input to create a
+       display filter. If a display filter is applied, the new filter
+       can be added using the same rules as “Apply Filter”
+
+     • You can drag and drop a column entry to the display filter to
+       create a filter for it.
+
+     • You can import profiles from a .zip archive or an existing
+       directory.
+
+     • Dark mode support on macOS and dark theme support on other
+       platforms has been improved.
+
+     • Brotli decompression support in HTTP/HTTP2 (requires the brotli
+       library).
+
+     • The build system now checks for a SpeexDSP system library
+       installation. The bundled Speex resampler code is still provided
+       as a fallback.
+
+     • WireGuard decryption can now be enabled through keys embedded in
+       a pcapng in addition to the existing key log preference (Bug
+       15571[1]).
+
+     • A new tap for extracting credentials from the capture file has
+       been added. It can be accessed through the -z credentials option
+       in tshark or from the “Tools › Credentials” menu in Wireshark.
+
+     • Editcap can now split files on floating point intervals.
+
+     • Windows .msi packages are now signed using SHA-2[2]. .exe
+       installers are still dual-signed using SHA-1 and SHA-2.
+
+     • The “Enabled Protocols” Dialog now only enables, disables and
+       inverts protocols based on the set filter selection. The protocol
+       type (standard or heuristic) may also be choosen as a filter
+       value.
+
+     • Save RTP stream to .au supports any codec with 8000 Hz rate
+       supported by Wireshark (shown in RTP player). If save of audio is
+       not possible (unsupported codec or rate), silence of same length
+       is saved and warning is shown.
+
+     • The “Analyze › Apply as Filter” and “Analyze › Prepare a Filter”
+       packet list and detail popup menus now show a preview of their
+       respective filters.
+
+     • Protobuf files (*.proto) can now be configured to enable more
+       precise parsing of serialized Protobuf data (such as gRPC).
+
+     • HTTP2 support streaming mode reassembly. To use this feature,
+       subdissectors can register itself to "streaming_content_type"
+       dissector table and return pinfo→desegment_len and
+       pinfo→desegment_offset to tell HTTP2 when to start and how many
+       additional bytes requires when next called.
+
+     • The message of stream gRPC method can now be parsed with
+       supporting of HTTP2 streaming mode reassembly feature.
+
+     • The Wireshark 3.1.0 Windows installers ship with Qt 5.12.4.
+       Previous installers shipped with Qt 5.12.1.
 
   New Protocol Support
 
-   There are no new protocols in this release.
+   3GPP BICC MST (BICC-MST), 3GPP log packet (LOG3GPP), 3GPP/GSM Cell
+   Broadcast Service Protocol (cbsp), Asynchronous Management Protocol
+   (AMP), Bluetooth Mesh Beacon, Bluetooth Mesh PB-ADV, Bluetooth Mesh
+   Provisioning PDU, Bluetooth Mesh Proxy, CableLabs Layer-3 Protocol
+   IEEE EtherType 0xb4e3 (CL3), DCOM IProvideClassInfo, DCOM ITypeInfo,
+   Diagnostic Log and Trace (DLT), Distributed Replicated Block Device
+   (DRBD), Dual Channel Wi-Fi (CL3DCW), EBHSCR Protocol (EBHSCR), EERO
+   Protocol (EERO), evolved Common Public Radio Interface (eCPRI), File
+   Server Remote VSS Protocol (FSRVP), FTDI FT USB Bridging Devices
+   (FTDI FT), Graylog Extended Log Format over UDP (GELF), GSM/3GPP CBSP
+   (Cell Broadcast Service Protocol), ITS message - CAMv1, ITS message -
+   DENMv1, Linux net_dm (network drop monitor) protocol, MIDI System
+   Exclusive DigiTech (SYSEX DigiTech), Network Controller Sideband
+   Interface (NCSI), NR Positioning Protocol A (NRPPa) TS 38.455, NVM
+   Express over Fabrics for TCP (nvme-tcp), OsmoTRX Protocol (GSM
+   Transceiver control and data), Scalable service-Oriented MiddlewarE
+   over IP (SOME/IP), USB 2.0 Link Layer (USBLL), and Wi-Fi Neighbour
+   Awareness Networking (NAN)
 
   Updated Protocol Support
 
-   BGP, HomePlug AV, IEEE 802.11, and TLS
+   Too many protocols have been updated to list here.
 
   New and Updated Capture File Support
 
-   There is no new or updated capture file support in this release.
-
-  New and Updated Capture Interfaces support
-
-   There is no new or updated capture file support in this release.
+   3gpp phone, Android Logcat Text, Ascend, Busmaster log file, Candump,
+   Endace ERF, NetScaler, pcapng, and Savvius *Peek
 
  Getting Wireshark
 
   Wireshark source code and installation packages are available from
-  https://www.wireshark.org/download.html[20].
+  https://www.wireshark.org/download.html.
 
   Vendor-supplied Packages
 
    Most Linux and Unix vendors supply their own Wireshark packages. You
    can usually install or upgrade Wireshark using the package management
    system specific to that platform. A list of third-party packages can
-   be found on the download page[21] on the Wireshark web site.
+   be found on the download page[3] on the Wireshark web site.
 
  File Locations
 
@@ -105,45 +191,27 @@ Wireshark 3.0.7 Release Notes
  Getting Help
 
   The User’s Guide, manual pages and various other documentation can be
-  found at https://www.wireshark.org/docs/[22]
+  found at https://www.wireshark.org/docs/
 
-  Community support is available on Wireshark’s Q&A site[23] and on the
+  Community support is available on Wireshark’s Q&A site[4] and on the
   wireshark-users mailing list. Subscription information and archives
-  for all of Wireshark’s mailing lists can be found on the web site[24].
+  for all of Wireshark’s mailing lists can be found on the web site[5].
 
-  Bugs and feature requests can be reported on the bug tracker[25].
+  Bugs and feature requests can be reported on the bug tracker[6].
 
  Frequently Asked Questions
 
-  A complete FAQ is available on the Wireshark web site[26].
+  A complete FAQ is available on the Wireshark web site[7].
 
-  Last updated 2019-12-04 16:18:05 UTC
+  Last updated 2019-12-18 18:21:12 UTC
 
  References
 
-   1. https://www.wireshark.org/security/wnpa-sec-2019-22
-   2. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=15961
-   3. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-19553
-   4. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=15696
-   5. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=15740
-   6. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=15751
-   7. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16109
-   8. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16130
-   9. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16132
-  10. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16144
-  11. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16145
-  12. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16158
-  13. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16165
-  14. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16167
-  15. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16178
-  16. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16180
-  17. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16200
-  18. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16218
-  19. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16228
-  20. https://www.wireshark.org/download.html
-  21. https://www.wireshark.org/download.html#thirdparty
-  22. https://www.wireshark.org/docs/
-  23. https://ask.wireshark.org/
-  24. https://www.wireshark.org/lists/
-  25. https://bugs.wireshark.org/
-  26. https://www.wireshark.org/faq.html
+   1. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=15571
+   2. https://support.microsoft.com/en-us/help/4472027/2019-sha-2-code-s
+  igning-support-requirement-for-windows-and-wsus
+   3. https://www.wireshark.org/download.html#thirdparty
+   4. https://ask.wireshark.org/
+   5. https://www.wireshark.org/lists/
+   6. https://bugs.wireshark.org/
+   7. https://www.wireshark.org/faq.html
