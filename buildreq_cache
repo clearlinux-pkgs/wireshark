@@ -1,13 +1,5 @@
-3.2.0
-bison
+3.2.1
 doxygen
-flex
-krb5-dev
-libcap-dev
 libgcrypt-dev
-libgpg-error-dev
 libpcap-dev
-lua-dev
-qtbase-extras
-qttools-extras
 systemd-dev
