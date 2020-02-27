@@ -1,4 +1,4 @@
-Wireshark 3.2.1 Release Notes
+Wireshark 3.2.2 Release Notes
 
  What is Wireshark?
 
@@ -7,68 +7,65 @@ Wireshark 3.2.1 Release Notes
 
  What’s New
 
+  Automatic updates were inadvertently disabled in the Wireshark 3.2.1
+  64-bit and 32-bit Windows installers. If you’re running Wireshark
+  3.2.1 on Windows you will have to update to a later version manually.
+  Bug 16381[1]
+
   Bug Fixes
 
    The following vulnerabilities have been fixed:
 
-     • wnpa-sec-2020-01[1] WASSP dissector crash. Bug 16324[2].
-       CVE-2020-7044[3].
+     • wnpa-sec-2020-03[2] LTE RRC dissector memory leak. Bug 16341[3].
+
+     • wnpa-sec-2020-04[4] WiMax DLMAP dissector crash. Bug 16368[5].
+
+     • wnpa-sec-2020-05[6] EAP dissector crash. Bug 16397[7].
+
+     • wnpa-sec-2020-06[8] WireGuard dissector crash. Bug 16394[9].
 
    The following bugs have been fixed:
 
-     • Incorrect parsing of USB CDC packets. Bug 14587[4].
+     • Add (IETF) QUIC Dissector. Bug 13881[10].
 
-     • Wireshark fails to create directory if parent directory does not
-       yet exist. Bug 16143[5].
+     • Support for CoAP over TCP and WebSockets (RFC 8323). Bug
+       15910[11].
 
-     • Buildbot crash output: randpkt-2019-11-30-22633.pcap. Bug
-       16240[6].
+     • SMB IOCTL response packet with BUFFER_OVERFLOW status is
+       dissected improperly. Bug 16261[12].
 
-     • Closing Flow Graph closes (crashes) main GUI window. Bug
-       16260[7].
+     • Wireshark fails to build with GCC-9. Bug 16319[13].
 
-     • Wireshark interprets websocket frames after HTTP handshake in a
-       wrong way. Bug 16274[8].
+     • NVMe/TCP ICReq PDU Not Interpreted Correctly. Bug 16333[14].
 
-     • A-bis/OML: IPA Destination IP Address attribute contains inverted
-       value (endianness). Bug 16282[9].
+     • ICMP: No response if ICMP reply packet has an ICMP checksum of
+       0x0000. Bug 16334[15].
 
-     • wiretap/log3gpp.c: 2 * leap before looking ?. Bug 16283[10].
+     • Display filter parsing broken after upgrade from 3.0.7. Bug
+       16336[16].
 
-     • Opening shell terminal prints Wireshark: Permission denied. Bug
-       16284[11].
+     • IPv4 fragment offset value is incorrect in IPv4 header decode.
+       Bug 16344[17].
 
-     • h264: SPS frame_crop_right_offset shown in UI as
-       frame_crop_left_offset. Bug 16285[12].
+     • RTCP frame length warning for SAT>IP APP packets. Bug 16345[18].
 
-     • BGP: update of "Sub-TLV Length" by draft-ietf-idr-tunnel-encaps.
-       Bug 16294[13].
+     • RTP export to rtpdump file doesn’t work. Bug 16351[19].
 
-     • SPNEGO+GSS-API+Kerberos+ap-options dissection produces "Unknown
-       Bit(s)" expert message. Bug 16301[14].
+     • CFDP dissector skips a byte. Bug 16361[20].
 
-     • USB Audio feature unit descriptor is incorrectly dissected. Bug
-       16305[15].
+     • ISAKMP: IKEv2 transforms and proposal have critical bit (BUG).
+       Bug 16364[21].
 
-     • Compiling the .y files fails with Berkeley YACC. Bug 16306[16].
+     • No IPv4/IPv6 hosts in Resolved Addresses dialog. Bug 16366[22].
 
-     • PDB files in Windows installer. Bug 16307[17].
+     • Lack of Check for Updates option in the Windows GUI. Bug
+       16381[23].
 
-     • NAS-5GS 5GS network feature support lacks MCSI, EMCN3 two fields
-       (octet 4). Bug 16310[18].
+     • LLDP dissector consumes all octets to the end of the TVB and eth
+       trailer dissector does not get called. Bug 16387[24].
 
-     • Option to change “Packet List” columns header right click pop-up
-       menu behavior. Bug 16317[19].
-
-     • DLT: Dissector does not parse multiple DLT messages in single UDP
-       packet. Bug 16321[20].
-
-     • ISAKMP Dissection: Enhance Source id and Destination ID field of
-       GDOI SA TEK payload for non IP ID type. Bug 16233[21].
-
-     • DOIP: Typo in "identifcation request messages". Bug 16325[22].
-
-     • Toolbar "?" help button - no text/help displayed. Bug 16327[23].
+     • LACP dissector consumes all octets to the end of the TVB and eth
+       trailer dissector does not get called. Bug 16388[25].
 
   New and Updated Features
 
@@ -80,13 +77,13 @@ Wireshark 3.2.1 Release Notes
 
   Updated Protocol Support
 
-   802.11 Radiotap, ASN.1 BER, BGP, DLT, DOIP, GSM A RR, GSM A-bis/OML,
-   H264, HTTP, IEC 60870-5-104, IEEE 802.11, IPv4, ISAKMP, NAS 5GS,
-   rtnetlink, SIP, TIPC, USB Audio, USB CDC, and WASSP
+   ARTNET, CFDP, CoAP, EAP, GTP, ICMP, ICMPv6, IPv4, ISAKMP, LACP, LLDP,
+   LTE RRC, NBAP, NVME-TCP, QUIC, RDM, RTCP, RTP, SMB, SOME/IP, TLS,
+   WiMax DLMAP, and WireGuard
 
   New and Updated Capture File Support
 
-   3gpp phone log
+   There is no new or updated capture file support in this release.
 
  Getting Wireshark
 
@@ -98,7 +95,7 @@ Wireshark 3.2.1 Release Notes
    Most Linux and Unix vendors supply their own Wireshark packages. You
    can usually install or upgrade Wireshark using the package management
    system specific to that platform. A list of third-party packages can
-   be found on the download page[24] on the Wireshark web site.
+   be found on the download page[26] on the Wireshark web site.
 
  File Locations
 
@@ -112,45 +109,47 @@ Wireshark 3.2.1 Release Notes
   The User’s Guide, manual pages and various other documentation can be
   found at https://www.wireshark.org/docs/
 
-  Community support is available on Wireshark’s Q&A site[25] and on the
+  Community support is available on Wireshark’s Q&A site[27] and on the
   wireshark-users mailing list. Subscription information and archives
-  for all of Wireshark’s mailing lists can be found on the web site[26].
+  for all of Wireshark’s mailing lists can be found on the web site[28].
 
-  Bugs and feature requests can be reported on the bug tracker[27].
+  Bugs and feature requests can be reported on the bug tracker[29].
 
  Frequently Asked Questions
 
-  A complete FAQ is available on the Wireshark web site[28].
+  A complete FAQ is available on the Wireshark web site[30].
 
-  Last updated 2020-01-15 17:51:08 UTC
+  Last updated 2020-02-26 18:46:23 UTC
 
  References
 
-   1. https://www.wireshark.org/security/wnpa-sec-2020-01
-   2. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16324
-   3. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7044
-   4. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14587
-   5. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16143
-   6. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16240
-   7. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16260
-   8. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16274
-   9. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16282
-  10. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16283
-  11. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16284
-  12. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16285
-  13. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16294
-  14. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16301
-  15. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16305
-  16. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16306
-  17. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16307
-  18. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16310
-  19. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16317
-  20. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16321
-  21. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16233
-  22. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16325
-  23. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16327
-  24. https://www.wireshark.org/download.html#thirdparty
-  25. https://ask.wireshark.org/
-  26. https://www.wireshark.org/lists/
-  27. https://bugs.wireshark.org/
-  28. https://www.wireshark.org/faq.html
+   1. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16381
+   2. https://www.wireshark.org/security/wnpa-sec-2020-03
+   3. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16341
+   4. https://www.wireshark.org/security/wnpa-sec-2020-04
+   5. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16368
+   6. https://www.wireshark.org/security/wnpa-sec-2020-05
+   7. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16397
+   8. https://www.wireshark.org/security/wnpa-sec-2020-06
+   9. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16394
+  10. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=13881
+  11. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=15910
+  12. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16261
+  13. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16319
+  14. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16333
+  15. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16334
+  16. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16336
+  17. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16344
+  18. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16345
+  19. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16351
+  20. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16361
+  21. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16364
+  22. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16366
+  23. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16381
+  24. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16387
+  25. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=16388
+  26. https://www.wireshark.org/download.html#thirdparty
+  27. https://ask.wireshark.org/
+  28. https://www.wireshark.org/lists/
+  29. https://bugs.wireshark.org/
+  30. https://www.wireshark.org/faq.html
