@@ -4,7 +4,7 @@
 #
 Name     : wireshark
 Version  : 3.2.7
-Release  : 39
+Release  : 40
 URL      : https://www.wireshark.org/download/src/all-versions/wireshark-3.2.7.tar.xz
 Source0  : https://www.wireshark.org/download/src/all-versions/wireshark-3.2.7.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
@@ -61,6 +61,7 @@ BuildRequires : systemd-dev
 BuildRequires : wireshark
 BuildRequires : zlib-dev
 Patch1: 0002-ignore-clobber.patch
+Patch2: CVE-2020-26575.patch
 
 %description
 NOTE: this documents the original intent behind libwiretap.  Currently,
@@ -138,13 +139,14 @@ man components for the wireshark package.
 %setup -q -n wireshark-3.2.7
 cd %{_builddir}/wireshark-3.2.7
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1600914460
+export SOURCE_DATE_EPOCH=1603835825
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -167,7 +169,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1600914460
+export SOURCE_DATE_EPOCH=1603835825
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/wireshark
 cp %{_builddir}/wireshark-3.2.7/COPYING %{buildroot}/usr/share/package-licenses/wireshark/269ab3f57e63fefe9f3aa074305a89c4526c5226
