@@ -4,7 +4,7 @@
 #
 Name     : wireshark
 Version  : 3.4.0
-Release  : 42
+Release  : 43
 URL      : https://www.wireshark.org/download/src/all-versions/wireshark-3.4.0.tar.xz
 Source0  : https://www.wireshark.org/download/src/all-versions/wireshark-3.4.0.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
@@ -29,6 +29,8 @@ BuildRequires : libgcrypt-dev
 BuildRequires : libgpg-error-dev
 BuildRequires : libpcap-dev
 BuildRequires : libxml2-dev
+BuildRequires : lua52-dev
+BuildRequires : lua52-staticdev
 BuildRequires : nghttp2-dev
 BuildRequires : perl
 BuildRequires : pkg-config
@@ -143,7 +145,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604360133
+export SOURCE_DATE_EPOCH=1604808078
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -163,7 +165,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1604360133
+export SOURCE_DATE_EPOCH=1604808078
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/wireshark
 cp %{_builddir}/wireshark-3.4.0/COPYING %{buildroot}/usr/share/package-licenses/wireshark/269ab3f57e63fefe9f3aa074305a89c4526c5226

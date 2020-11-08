@@ -9,3 +9,8 @@ sbc-dev
 flex
 bison
 collectd-dev
+doxygen
+libgcrypt-dev
+libpcap-dev
+lua52-dev
+lua52-staticdev
