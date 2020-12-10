@@ -1,8 +1,8 @@
 # This file contains pkgconfig build requirements that get picked up
 # but are undesirable. One entry per line, no whitespace.
-libnl-1
-libnl-2.0
-wireshark
 gdk-pixbuf-2.0>=2.26
 gio-2.0>=2.32
 libmaxminddb
+libnl-1
+libnl-2.0
+wireshark

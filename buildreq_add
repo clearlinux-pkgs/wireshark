@@ -1,16 +1,16 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-nghttp2-dev
-qttools-dev
-snappy-dev
-buildreq-kde
-libgpg-error-dev
-sbc-dev
-flex
 bison
+buildreq-kde
 collectd-dev
 doxygen
+flex
 libgcrypt-dev
+libgpg-error-dev
 libpcap-dev
 lua52-dev
 lua52-staticdev
+nghttp2-dev
+qttools-dev
+sbc-dev
+snappy-dev
