@@ -4,7 +4,7 @@
 #
 Name     : wireshark
 Version  : 3.4.1
-Release  : 45
+Release  : 46
 URL      : https://www.wireshark.org/download/src/all-versions/wireshark-3.4.1.tar.xz
 Source0  : https://www.wireshark.org/download/src/all-versions/wireshark-3.4.1.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
