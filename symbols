@@ -987,6 +987,7 @@ libwireshark.so.14:mark_frame_as_depended_upon
 libwireshark.so.14:maxmind_db_get_paths
 libwireshark.so.14:maxmind_db_lookup_ipv4
 libwireshark.so.14:maxmind_db_lookup_ipv6
+libwireshark.so.14:maxmind_db_set_synchrony
 libwireshark.so.14:mbim_register_uuid_ext
 libwireshark.so.14:memory_usage_component_register
 libwireshark.so.14:memory_usage_gc
