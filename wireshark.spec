@@ -4,7 +4,7 @@
 #
 Name     : wireshark
 Version  : 3.4.5
-Release  : 53
+Release  : 54
 URL      : https://www.wireshark.org/download/src/all-versions/wireshark-3.4.5.tar.xz
 Source0  : https://www.wireshark.org/download/src/all-versions/wireshark-3.4.5.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
@@ -150,10 +150,10 @@ export SOURCE_DATE_EPOCH=1619060038
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 %cmake ..
 make  %{?_smp_mflags}
 popd
