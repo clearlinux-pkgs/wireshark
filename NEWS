@@ -1,4 +1,4 @@
-Wireshark 3.4.5 Release Notes
+Wireshark 3.4.6 Release Notes
 
  What is Wireshark?
 
@@ -7,38 +7,30 @@ Wireshark 3.4.5 Release Notes
 
  What’s New
 
+  The Windows installers now ship with Npcap 1.31. They previously
+  shipped with Npcap 1.10.
+
+  The Windows installers now ship with Qt 5.15.2. They previously
+  shipped with Qt 5.12.1.
+
   Bug Fixes
 
-   The following vulnerabilities have been fixed:
-
-     • wnpa-sec-2021-04[1] MS-WSP dissector excessive memory
-       consumption. Issue 17331[2].
+     • wnpa-sec-2021-04[1] DVB-S2-BB dissector infinite loop
 
    The following bugs have been fixed:
 
-     • TShark does not print GeoIP information Issue 14691[3].
+     • Macro filters can’t handle escaped characters Issue 17160[2].
 
-     • TShark error when piping to "head" Issue 16192[4].
+     • Display filter crashes Wireshark Issue 17316[3].
 
-     • Parts of ASCII representation in Packet Bytes pane are missing
-       Issue 17087[5].
+     • IEEE-1588 Signalling Unicast TLV incorrectly reported as being
+       malformed Issue 17355[4].
 
-     • Buildbot crash output: fuzz-2021-02-22-1012761.pcap Issue
-       17254[6].
+     • IETF QUIC TLS decryption error with extraneous packets during the
+       handshake Issue 17383[5].
 
-     • NDPE attribute of NAN packet is not dissected Issue 17278[7].
-
-     • TECMP: reserved flag interpreted as part of timestamp Issue
-       17279[8].
-
-     • Master branch does not compile at least with gcc-11 Issue
-       17281[9].
-
-     • DNS IXFR/AXFR multiple response Issue 17293[10].
-
-     • File too large Issue 17301[11].
-
-     • Build fails with CMake 3.20 Issue 17314[12].
+     • Statistics → Resolved Addresses: multi-protocol (TCP/UDP/…​)
+       ports not displayed Issue 17395[6].
 
   New and Updated Features
 
@@ -48,12 +40,11 @@ Wireshark 3.4.5 Release Notes
 
   Updated Protocol Support
 
-   DECT, DNS, EAP, Kerberos, LDAP, MS-WSP, SMB2, Sysdig, TECMP, and WiFi
-   NAN
+   DNP, DVB-S2-BB, ProtoBuf, PTP, QUIC, RANAP, and TACACS
 
   New and Updated Capture File Support
 
-   pcapng
+   Ascend, ERF, K12, NetScaler, and pcapng
 
  Getting Wireshark
 
@@ -65,7 +56,7 @@ Wireshark 3.4.5 Release Notes
    Most Linux and Unix vendors supply their own Wireshark packages. You
    can usually install or upgrade Wireshark using the package management
    system specific to that platform. A list of third-party packages can
-   be found on the download page[13] on the Wireshark web site.
+   be found on the download page[7] on the Wireshark web site.
 
  File Locations
 
@@ -79,34 +70,28 @@ Wireshark 3.4.5 Release Notes
   The User’s Guide, manual pages and various other documentation can be
   found at https://www.wireshark.org/docs/
 
-  Community support is available on Wireshark’s Q&A site[14] and on the
+  Community support is available on Wireshark’s Q&A site[8] and on the
   wireshark-users mailing list. Subscription information and archives
-  for all of Wireshark’s mailing lists can be found on the web site[15].
+  for all of Wireshark’s mailing lists can be found on the web site[9].
 
-  Issues and feature requests can be reported on the issue tracker[16].
+  Issues and feature requests can be reported on the issue tracker[10].
 
  Frequently Asked Questions
 
-  A complete FAQ is available on the Wireshark web site[17].
+  A complete FAQ is available on the Wireshark web site[11].
 
-  Last updated 2021-04-21 17:09:57 UTC
+  Last updated 2021-06-02 17:34:32 UTC
 
  References
 
    1. https://www.wireshark.org/security/wnpa-sec-2021-04
-   2. https://gitlab.com/wireshark/wireshark/-/issues/17331
-   3. https://gitlab.com/wireshark/wireshark/-/issues/14691
-   4. https://gitlab.com/wireshark/wireshark/-/issues/16192
-   5. https://gitlab.com/wireshark/wireshark/-/issues/17087
-   6. https://gitlab.com/wireshark/wireshark/-/issues/17254
-   7. https://gitlab.com/wireshark/wireshark/-/issues/17278
-   8. https://gitlab.com/wireshark/wireshark/-/issues/17279
-   9. https://gitlab.com/wireshark/wireshark/-/issues/17281
-  10. https://gitlab.com/wireshark/wireshark/-/issues/17293
-  11. https://gitlab.com/wireshark/wireshark/-/issues/17301
-  12. https://gitlab.com/wireshark/wireshark/-/issues/17314
-  13. https://www.wireshark.org/download.html#thirdparty
-  14. https://ask.wireshark.org/
-  15. https://www.wireshark.org/lists/
-  16. https://gitlab.com/wireshark/wireshark/-/issues
-  17. https://www.wireshark.org/faq.html
+   2. https://gitlab.com/wireshark/wireshark/-/issues/17160
+   3. https://gitlab.com/wireshark/wireshark/-/issues/17316
+   4. https://gitlab.com/wireshark/wireshark/-/issues/17355
+   5. https://gitlab.com/wireshark/wireshark/-/issues/17383
+   6. https://gitlab.com/wireshark/wireshark/-/issues/17395
+   7. https://www.wireshark.org/download.html#thirdparty
+   8. https://ask.wireshark.org/
+   9. https://www.wireshark.org/lists/
+  10. https://gitlab.com/wireshark/wireshark/-/issues
+  11. https://www.wireshark.org/faq.html
