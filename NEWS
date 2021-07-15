@@ -1,4 +1,4 @@
-Wireshark 3.4.6 Release Notes
+Wireshark 3.4.7 Release Notes
 
  What is Wireshark?
 
@@ -7,30 +7,22 @@ Wireshark 3.4.6 Release Notes
 
  What’s New
 
-  The Windows installers now ship with Npcap 1.31. They previously
-  shipped with Npcap 1.10.
-
-  The Windows installers now ship with Qt 5.15.2. They previously
-  shipped with Qt 5.12.1.
-
   Bug Fixes
 
-     • wnpa-sec-2021-04[1] DVB-S2-BB dissector infinite loop
+   The following vulnerabilities have been fixed:
+
+     • wnpa-sec-2021-06[1] DNP dissector crash. Issue 17462[2].
+       CVE-2021-22235[3].
 
    The following bugs have been fixed:
 
-     • Macro filters can’t handle escaped characters Issue 17160[2].
+     • TCP dissector - Erroneous DSACK reporting Issue 17315[4].
 
-     • Display filter crashes Wireshark Issue 17316[3].
+     • No wlan_radio.duration calculated for PHY type: 802.11ac (VHT)
+       Issue 17419[5].
 
-     • IEEE-1588 Signalling Unicast TLV incorrectly reported as being
-       malformed Issue 17355[4].
-
-     • IETF QUIC TLS decryption error with extraneous packets during the
-       handshake Issue 17383[5].
-
-     • Statistics → Resolved Addresses: multi-protocol (TCP/UDP/…​)
-       ports not displayed Issue 17395[6].
+     • NAN Dissector has wrong minimum length for availability attribute
+       Issue 17431[6].
 
   New and Updated Features
 
@@ -40,11 +32,13 @@ Wireshark 3.4.6 Release Notes
 
   Updated Protocol Support
 
-   DNP, DVB-S2-BB, ProtoBuf, PTP, QUIC, RANAP, and TACACS
+   ASTERIX, BT LE LL, DCE RPC, DNP, GTPv2, IEEE 802.11 Radio, LDAP, NAN,
+   NORDIC_BLE, NR RRC, OSPF, pcapng, PNIO, RSL, S101, Snort config, and
+   TCP
 
   New and Updated Capture File Support
 
-   Ascend, ERF, K12, NetScaler, and pcapng
+   Catapult DCT2000, ERF, and pcap
 
  Getting Wireshark
 
@@ -80,16 +74,16 @@ Wireshark 3.4.6 Release Notes
 
   A complete FAQ is available on the Wireshark web site[11].
 
-  Last updated 2021-06-02 17:34:32 UTC
+  Last updated 2021-07-14 16:36:15 UTC
 
  References
 
-   1. https://www.wireshark.org/security/wnpa-sec-2021-04
-   2. https://gitlab.com/wireshark/wireshark/-/issues/17160
-   3. https://gitlab.com/wireshark/wireshark/-/issues/17316
-   4. https://gitlab.com/wireshark/wireshark/-/issues/17355
-   5. https://gitlab.com/wireshark/wireshark/-/issues/17383
-   6. https://gitlab.com/wireshark/wireshark/-/issues/17395
+   1. https://www.wireshark.org/security/wnpa-sec-2021-06
+   2. https://gitlab.com/wireshark/wireshark/-/issues/17462
+   3. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-22235
+   4. https://gitlab.com/wireshark/wireshark/-/issues/17315
+   5. https://gitlab.com/wireshark/wireshark/-/issues/17419
+   6. https://gitlab.com/wireshark/wireshark/-/issues/17431
    7. https://www.wireshark.org/download.html#thirdparty
    8. https://ask.wireshark.org/
    9. https://www.wireshark.org/lists/

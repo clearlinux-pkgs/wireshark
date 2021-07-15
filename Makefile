@@ -1,5 +1,5 @@
 PKG_NAME := wireshark
-URL = https://www.wireshark.org/download/src/all-versions/wireshark-3.4.6.tar.xz
+URL = https://1.na.dl.wireshark.org/src/wireshark-3.4.7.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common
