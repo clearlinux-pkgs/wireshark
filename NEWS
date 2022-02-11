@@ -1,4 +1,4 @@
-Wireshark 3.6.1 Release Notes
+Wireshark 3.6.2 Release Notes
 
  What is Wireshark?
 
@@ -11,67 +11,63 @@ Wireshark 3.6.1 Release Notes
 
    The following vulnerabilities have been fixed:
 
-     • wnpa-sec-2021-17[1] RTMPT dissector infinite loop. Issue
-       17745[2]. CVE-2021-4185[3].
+     • wnpa-sec-2022-01[1] RTMPT dissector infinite loop. Issue
+       17813[2].
 
-     • wnpa-sec-2021-18[4] BitTorrent DHT dissector infinite loop. Issue
-       17754[5]. CVE-2021-4184[6].
+     • wnpa-sec-2022-02[3] Large loops in multiple dissectors. Issue
+       17829[4], Issue 17842[5], Issue 17847[6], Issue 17855[7], Issue
+       17891[8], Issue 17925[9], Issue 17926[10], Issue 17931[11], Issue
+       17932[12], Issue 17933[13].
 
-     • wnpa-sec-2021-19[7] pcapng file parser crash. Issue 17755[8].
-       CVE-2021-4183[9].
+     • wnpa-sec-2022-03[14] PVFS dissector crash. Issue 17840[15].
 
-     • wnpa-sec-2021-20[10] RFC 7468 file parser infinite loop. Issue
-       17801[11]. CVE-2021-4182[12].
+     • wnpa-sec-2022-04[16] CSN.1 dissector crash. Issue 17882[17].
 
-     • wnpa-sec-2021-21[13] Sysdig Event dissector crash.
-       CVE-2021-4181[14].
-
-     • wnpa-sec-2021-22[15] Kafka dissector infinite loop. Issue
-       17811[16].
+     • wnpa-sec-2022-05[18] CMS dissector crash. Issue 17935[19].
 
    The following bugs have been fixed:
 
-     • Allow sub-second timestamps in hexdumps Issue 15562[17].
+     • Support for GSM SMS TPDU in HTTP2 body Issue 17784[20].
 
-     • GRPC: An unnecessary empty Protobuf tree item is displayed if the
-       GRPC message body length is 0 Issue 17675[18].
+     • Wireshark 3.6.1 broke the ABI by removing ws_log_default_writer
+       from libwsutil Issue 17822[21].
 
-     • Can’t install "ChmodBPF.pkg" or "Add Wireshark to the system
-       path.pkg" on M1 MacBook Air Monterey without Rosetta 2 Issue
-       17757[19].
+     • Fedora RPM package build failing with RPATH of /usr/local/lib64
+       Issue 17830[22].
 
-     • TECMP: LIN Payload is cut off by 1 byte Issue 17760[20].
+     • macos-setup.sh: ftp.pcre.org no longer exists Issue 17834[23].
 
-     • Wireshark crashes if a 64 bit field of type BASE_CUSTOM is
-       applied as a column Issue 17762[21].
+     • nmap.org/npcap → npcap.com: domain/URL change Issue 17838[24].
 
-     • Command line option "-o console.log.level" causes wireshark and
-       tshark to exit on start Issue 17763[22].
+     • MPLS ECHO FEC stack change TLV not dissected correctly Issue
+       17868[25].
 
-     • Setting WIRESHARK_LOG_LEVEL=debug breaks interface capture Issue
-       17764[23].
+     • Attempting to open a systemd journal export file segfaults Issue
+       17875[26].
 
-     • Unable to build without tshark Issue 17766[24].
+     • Dissector bug on 802.11ac packets Issue 17878[27].
 
-     • IEEE 802.11 action frames are not getting parsed and always seen
-       as malformed Issue 17767[25].
+     • The Info column shows only one NGAP/S1AP packet of several
+       packets inside an SCTP packet Issue 17886[28].
 
-     • IEC 60870-5-101 link address field is 1 byte, but should have
-       configurable length of 0,1 or 2 bytes Issue 17775[26].
+     • Uninstalling Wireshark 3.6.1 on Windows 10 fails to remove the
+       installation directory because it doesn’t remove the User’s Guide
+       subdirectory and all its contents. Issue 17898[29].
 
-     • dfilter: 'tcp.port not in {1}' crashes Wireshark Issue 17785[27].
+     • 3.6 doesn’t build without zlib Issue 17899[30].
+
+     • SIP Statistics no longer properly reporting method type
+       accounting Issue 17904[31].
+
+     • Fuzz job crash output: fuzz-2022-01-26-6940.pcap Issue 17909[32].
+
+     • SCTP retransmission detection broken for the first data chunk of
+       each association with relative TSN Issue 17917[33].
+
+     • “Show In Folder” doesn’t work correctly for filenames with spaces
+       Issue 17927[34].
 
   New and Updated Features
-
-     • The 'console.log.level' preference was removed in Wireshark
-       3.6.0. This release adds an '-o console.log.level:'
-       backward-compatibilty option on the CLI that maps to the new
-       logging sub-system. Note that this does not have bitmask
-       semantics and does not correspond to any actual preference. It is
-       just a transition mechanism for users that were relying on this
-       CLI option and will be removed in the future. To see the new
-       diagnostic output options consult the manpages or the output of
-       '--help'.
 
   New Protocol Support
 
@@ -79,13 +75,15 @@ Wireshark 3.6.1 Release Notes
 
   Updated Protocol Support
 
-   ANSI A I/F, AT, BitTorrent DHT, FF, GRPC, IEC 101/104, IEEE 802.11,
-   IEEE 802.11 Radiotap, IPsec, Kafka, QUIC, RTMPT, RTSP, SRVLOC, Sysdig
-   Event, and TECMP
+   AMP, ASN.1 PER, ATN-ULCS, BGP, BP, CFLOW, CMS, CSN.1, GDSDB, GSM RP,
+   GTP, HTTP3, IEEE 802.11 Radiotap, IPDC, ISAKMP, Kafka, MP2T, MPEG
+   PES, MPEG SECT, MPLS ECHO, NGAP, NTLMSSP, OpenFlow 1.4, OpenFlow 1.5,
+   P_MUL, PN-RT, PROXY, PTP, PVFS, RSL, RTMPT, rtnetlink, S1AP, SCTP,
+   Signal PDU, SIP, TDS, USB, WAP, and ZigBee ZCL
 
   New and Updated Capture File Support
 
-   BLF and RFC 7468
+   BLF and libpcap
 
   New File Format Decoding Support
 
@@ -101,7 +99,7 @@ Wireshark 3.6.1 Release Notes
    Most Linux and Unix vendors supply their own Wireshark packages. You
    can usually install or upgrade Wireshark using the package management
    system specific to that platform. A list of third-party packages can
-   be found on the download page[28] on the Wireshark web site.
+   be found on the download page[35] on the Wireshark web site.
 
  File Locations
 
@@ -116,49 +114,56 @@ Wireshark 3.6.1 Release Notes
   The User’s Guide, manual pages and various other documentation can be
   found at https://www.wireshark.org/docs/
 
-  Community support is available on Wireshark’s Q&A site[29] and on the
+  Community support is available on Wireshark’s Q&A site[36] and on the
   wireshark-users mailing list. Subscription information and archives
-  for all of Wireshark’s mailing lists can be found on the web site[30].
+  for all of Wireshark’s mailing lists can be found on the web site[37].
 
-  Bugs and feature requests can be reported on the issue tracker[31].
+  Bugs and feature requests can be reported on the issue tracker[38].
 
  Frequently Asked Questions
 
-  A complete FAQ is available on the Wireshark web site[32].
+  A complete FAQ is available on the Wireshark web site[39].
 
-  Last updated 2021-12-29 19:11:55 UTC
+  Last updated 2022-02-10 18:32:36 UTC
 
  References
 
-   1. https://www.wireshark.org/security/wnpa-sec-2021-17
-   2. https://gitlab.com/wireshark/wireshark/-/issues/17745
-   3. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-4185
-   4. https://www.wireshark.org/security/wnpa-sec-2021-18
-   5. https://gitlab.com/wireshark/wireshark/-/issues/17754
-   6. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-4184
-   7. https://www.wireshark.org/security/wnpa-sec-2021-19
-   8. https://gitlab.com/wireshark/wireshark/-/issues/17755
-   9. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-4183
-  10. https://www.wireshark.org/security/wnpa-sec-2021-20
-  11. https://gitlab.com/wireshark/wireshark/-/issues/17801
-  12. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-4182
-  13. https://www.wireshark.org/security/wnpa-sec-2021-21
-  14. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-4181
-  15. https://www.wireshark.org/security/wnpa-sec-2021-22
-  16. https://gitlab.com/wireshark/wireshark/-/issues/17811
-  17. https://gitlab.com/wireshark/wireshark/-/issues/15562
-  18. https://gitlab.com/wireshark/wireshark/-/issues/17675
-  19. https://gitlab.com/wireshark/wireshark/-/issues/17757
-  20. https://gitlab.com/wireshark/wireshark/-/issues/17760
-  21. https://gitlab.com/wireshark/wireshark/-/issues/17762
-  22. https://gitlab.com/wireshark/wireshark/-/issues/17763
-  23. https://gitlab.com/wireshark/wireshark/-/issues/17764
-  24. https://gitlab.com/wireshark/wireshark/-/issues/17766
-  25. https://gitlab.com/wireshark/wireshark/-/issues/17767
-  26. https://gitlab.com/wireshark/wireshark/-/issues/17775
-  27. https://gitlab.com/wireshark/wireshark/-/issues/17785
-  28. https://www.wireshark.org/download.html
-  29. https://ask.wireshark.org/
-  30. https://www.wireshark.org/lists/
-  31. https://gitlab.com/wireshark/wireshark/-/issues
-  32. https://www.wireshark.org/faq.html
+   1. https://www.wireshark.org/security/wnpa-sec-2022-01
+   2. https://gitlab.com/wireshark/wireshark/-/issues/17813
+   3. https://www.wireshark.org/security/wnpa-sec-2022-02
+   4. https://gitlab.com/wireshark/wireshark/-/issues/17829
+   5. https://gitlab.com/wireshark/wireshark/-/issues/17842
+   6. https://gitlab.com/wireshark/wireshark/-/issues/17847
+   7. https://gitlab.com/wireshark/wireshark/-/issues/17855
+   8. https://gitlab.com/wireshark/wireshark/-/issues/17891
+   9. https://gitlab.com/wireshark/wireshark/-/issues/17925
+  10. https://gitlab.com/wireshark/wireshark/-/issues/17926
+  11. https://gitlab.com/wireshark/wireshark/-/issues/17931
+  12. https://gitlab.com/wireshark/wireshark/-/issues/17932
+  13. https://gitlab.com/wireshark/wireshark/-/issues/17933
+  14. https://www.wireshark.org/security/wnpa-sec-2022-03
+  15. https://gitlab.com/wireshark/wireshark/-/issues/17840
+  16. https://www.wireshark.org/security/wnpa-sec-2022-04
+  17. https://gitlab.com/wireshark/wireshark/-/issues/17882
+  18. https://www.wireshark.org/security/wnpa-sec-2022-05
+  19. https://gitlab.com/wireshark/wireshark/-/issues/17935
+  20. https://gitlab.com/wireshark/wireshark/-/issues/17784
+  21. https://gitlab.com/wireshark/wireshark/-/issues/17822
+  22. https://gitlab.com/wireshark/wireshark/-/issues/17830
+  23. https://gitlab.com/wireshark/wireshark/-/issues/17834
+  24. https://gitlab.com/wireshark/wireshark/-/issues/17838
+  25. https://gitlab.com/wireshark/wireshark/-/issues/17868
+  26. https://gitlab.com/wireshark/wireshark/-/issues/17875
+  27. https://gitlab.com/wireshark/wireshark/-/issues/17878
+  28. https://gitlab.com/wireshark/wireshark/-/issues/17886
+  29. https://gitlab.com/wireshark/wireshark/-/issues/17898
+  30. https://gitlab.com/wireshark/wireshark/-/issues/17899
+  31. https://gitlab.com/wireshark/wireshark/-/issues/17904
+  32. https://gitlab.com/wireshark/wireshark/-/issues/17909
+  33. https://gitlab.com/wireshark/wireshark/-/issues/17917
+  34. https://gitlab.com/wireshark/wireshark/-/issues/17927
+  35. https://www.wireshark.org/download.html
+  36. https://ask.wireshark.org/
+  37. https://www.wireshark.org/lists/
+  38. https://gitlab.com/wireshark/wireshark/-/issues
+  39. https://www.wireshark.org/faq.html
