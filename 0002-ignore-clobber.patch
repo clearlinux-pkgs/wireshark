@@ -1,8 +1,8 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 2bdd66e..98cac2a 100644
+index 2a86291..6ca1d03 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -566,6 +566,7 @@ else() # ! MSVC
+@@ -685,6 +685,7 @@ else() # ! MSVC
  		# The following are for C and C++
  		# -O<X> and -g get set by the CMAKE_BUILD_TYPE
  		-Wall

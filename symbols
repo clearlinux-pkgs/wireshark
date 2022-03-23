@@ -2009,6 +2009,7 @@ libwiretap.so.12:wtap_dump_can_open
 libwiretap.so.12:wtap_dump_can_write
 libwiretap.so.12:wtap_dump_can_write_encap
 libwiretap.so.12:wtap_dump_close
+libwiretap.so.12:wtap_dump_close_new_temp
 libwiretap.so.12:wtap_dump_discard_decryption_secrets
 libwiretap.so.12:wtap_dump_fdopen
 libwiretap.so.12:wtap_dump_file_encap_type
