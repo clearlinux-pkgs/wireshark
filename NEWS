@@ -1,4 +1,4 @@
- Wireshark 3.6.3 Release Notes
+ Wireshark 3.6.4 Release Notes
 
  What is Wireshark?
 
@@ -7,30 +7,41 @@
 
  What’s New
 
+ Note: This is the last release branch with support for 32-bit Windows.
+ Updates will no longer be available after May 22, 2024 for that
+ platform. Issue 17779[1]
+
+  The Windows installers are now built with Visual Studio 2022.
+
+  RPM packaging has been improved.
+
   Bug Fixes
 
    The following bugs have been fixed:
 
-     • Fuzz job crash output: fuzz-2022-01-19-7399.pcap Issue 17894[1].
+     • Build failure with GCC 7.5, Linux. Issue 17911[2].
 
-     • TLS dissector incorrectly reports JA3 values Issue 17942[2].
+     • RDP dissected as SSL. Issue 17952[3].
 
-     • "Wiki Protocol page" in packet details menu is broken - wiki
-       pages not migrated to GitLab? Issue 17944[3].
+     • IPFIX/cflow dissector asserts when varlen field length is zero.
+       Issue 18010[4].
 
-     • Dissector bug, protocol PFCP display Flow Description IE value
-       error in Additional Flow Description of PFD Management Request
-       Message Issue 17951[4].
+     • 802.11ax HE PHY "Device Class" dissected incorrectly. Issue
+       18030[5].
 
-     • Bluetooth: Fails to open Log file for SCO connection Issue
-       17964[5].
+     • DHCPv6 Option 15 User-Class incorrectly parsed in Wireshark.
+       Issue 18032[6].
 
-     • Fuzz job crash output: fuzz-2022-03-07-10896.pcap Issue 17984[6].
+     • ICMPv6 dissector: PREF64 option parsing only works for prefix
+       length 96. Issue 18033[7].
 
-     • libwiretap: Save as ERF causes segmentation fault Issue 17989[7].
+     • Switch macOS updater to Sparkle 2. Issue 18035[8].
 
-     • HTTP server returning multiple early hints shows too many
-       responses in "Follow HTTP Stream" Issue 18006[8].
+     • CQL timestamp dissector displays the wrong timestamp. Issue
+       18038[9].
+
+     • Unable to dissect 802.11ax Target Wake Time (TWT) packets. Issue
+       18050[10].
 
   New and Updated Features
 
@@ -40,12 +51,12 @@
 
   Updated Protocol Support
 
-   CSN.1, HTTP, IEEE 802.11, NTLM SSP, PFCP, PKTLOG, SSDP, TLS, and USB
-   HID
+   CQL, DHCPv6, ICMPv6, IEEE 802.11, NAS-5GS, NetFlow/IPFIX, RDP, and
+   UDS
 
   New and Updated Capture File Support
 
-   pcap and pcapng
+   There is no new or updated capture file support in this release.
 
   New File Format Decoding Support
 
@@ -61,45 +72,47 @@
    Most Linux and Unix vendors supply their own Wireshark packages. You
    can usually install or upgrade Wireshark using the package management
    system specific to that platform. A list of third-party packages can
-   be found on the download page[9] on the Wireshark web site.
+   be found on the download page[11] on the Wireshark web site.
 
  File Locations
 
   Wireshark and TShark look in several different locations for
   preference files, plugins, SNMP MIBS, and RADIUS dictionaries. These
-  locations vary from platform to platform. You can use Help › About
-  Wireshark › Folders or tshark -G folders to find the default locations
-  on your system.
+  locations vary from platform to platform. You can use "Help › About
+  Wireshark › Folders" or `tshark -G folders` to find the default
+  locations on your system.
 
  Getting Help
 
   The User’s Guide, manual pages and various other documentation can be
   found at https://www.wireshark.org/docs/
 
-  Community support is available on Wireshark’s Q&A site[10] and on the
+  Community support is available on Wireshark’s Q&A site[12] and on the
   wireshark-users mailing list. Subscription information and archives
-  for all of Wireshark’s mailing lists can be found on the web site[11].
+  for all of Wireshark’s mailing lists can be found on the web site[13].
 
-  Bugs and feature requests can be reported on the issue tracker[12].
+  Bugs and feature requests can be reported on the issue tracker[14].
 
  Frequently Asked Questions
 
-  A complete FAQ is available on the Wireshark web site[13].
+  A complete FAQ is available on the Wireshark web site[15].
 
-  Last updated 2022-03-23 16:42:51 UTC
+  Last updated 2022-05-04 16:32:25 UTC
 
  References
 
-   1. https://gitlab.com/wireshark/wireshark/-/issues/17894
-   2. https://gitlab.com/wireshark/wireshark/-/issues/17942
-   3. https://gitlab.com/wireshark/wireshark/-/issues/17944
-   4. https://gitlab.com/wireshark/wireshark/-/issues/17951
-   5. https://gitlab.com/wireshark/wireshark/-/issues/17964
-   6. https://gitlab.com/wireshark/wireshark/-/issues/17984
-   7. https://gitlab.com/wireshark/wireshark/-/issues/17989
-   8. https://gitlab.com/wireshark/wireshark/-/issues/18006
-   9. https://www.wireshark.org/download.html
-  10. https://ask.wireshark.org/
-  11. https://www.wireshark.org/lists/
-  12. https://gitlab.com/wireshark/wireshark/-/issues
-  13. https://www.wireshark.org/faq.html
+   1. https://gitlab.com/wireshark/wireshark/-/issues/17779
+   2. https://gitlab.com/wireshark/wireshark/-/issues/17911
+   3. https://gitlab.com/wireshark/wireshark/-/issues/17952
+   4. https://gitlab.com/wireshark/wireshark/-/issues/18010
+   5. https://gitlab.com/wireshark/wireshark/-/issues/18030
+   6. https://gitlab.com/wireshark/wireshark/-/issues/18032
+   7. https://gitlab.com/wireshark/wireshark/-/issues/18033
+   8. https://gitlab.com/wireshark/wireshark/-/issues/18035
+   9. https://gitlab.com/wireshark/wireshark/-/issues/18038
+  10. https://gitlab.com/wireshark/wireshark/-/issues/18050
+  11. https://www.wireshark.org/download.html
+  12. https://ask.wireshark.org/
+  13. https://www.wireshark.org/lists/
+  14. https://gitlab.com/wireshark/wireshark/-/issues
+  15. https://www.wireshark.org/faq.html
