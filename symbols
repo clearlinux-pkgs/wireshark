@@ -1662,6 +1662,7 @@ libwireshark.so.15:tvb_find_guint8
 libwireshark.so.15:tvb_find_line_end
 libwireshark.so.15:tvb_find_line_end_unquoted
 libwireshark.so.15:tvb_find_tvb
+libwireshark.so.15:tvb_fix_reported_length
 libwireshark.so.15:tvb_format_text
 libwireshark.so.15:tvb_format_text_wsp
 libwireshark.so.15:tvb_free
