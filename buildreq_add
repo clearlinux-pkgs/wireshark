@@ -14,3 +14,8 @@ nghttp2-dev
 qttools-dev
 sbc-dev
 snappy-dev
+libmaxminddb-dev
+opus-dev
+opusfile-dev
+speexdsp-dev
+systemd-dev
