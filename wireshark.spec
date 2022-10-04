@@ -4,7 +4,7 @@
 #
 Name     : wireshark
 Version  : 3.6.8
-Release  : 69
+Release  : 70
 URL      : https://1.na.dl.wireshark.org/src/wireshark-3.6.8.tar.xz
 Source0  : https://1.na.dl.wireshark.org/src/wireshark-3.6.8.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
@@ -28,9 +28,12 @@ BuildRequires : gettext-dev
 BuildRequires : git
 BuildRequires : libgcrypt-dev
 BuildRequires : libgpg-error-dev
+BuildRequires : libmaxminddb-dev
 BuildRequires : libpcap-dev
 BuildRequires : libxml2-dev
 BuildRequires : nghttp2-dev
+BuildRequires : opus-dev
+BuildRequires : opusfile-dev
 BuildRequires : perl
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(Qt5Core)
@@ -58,6 +61,8 @@ BuildRequires : qtbase-dev
 BuildRequires : qttools-dev
 BuildRequires : sbc-dev
 BuildRequires : snappy-dev
+BuildRequires : speexdsp-dev
+BuildRequires : systemd-dev
 BuildRequires : tiff-dev
 BuildRequires : wireshark
 BuildRequires : zlib-dev
@@ -128,7 +133,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1664895593
+export SOURCE_DATE_EPOCH=1664896190
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -148,7 +153,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make %{?_smp_mflags} test || :
 
 %install
-export SOURCE_DATE_EPOCH=1664895593
+export SOURCE_DATE_EPOCH=1664896190
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/wireshark
 cp %{_builddir}/wireshark-%{version}/COPYING %{buildroot}/usr/share/package-licenses/wireshark/269ab3f57e63fefe9f3aa074305a89c4526c5226 || :
@@ -178,6 +183,7 @@ popd
 /usr/lib64/wireshark/extcap/ciscodump
 /usr/lib64/wireshark/extcap/dpauxmon
 /usr/lib64/wireshark/extcap/randpktdump
+/usr/lib64/wireshark/extcap/sdjournal
 /usr/lib64/wireshark/extcap/sshdump
 /usr/lib64/wireshark/extcap/udpdump
 
@@ -189,6 +195,7 @@ popd
 /usr/bin/editcap
 /usr/bin/idl2wrs
 /usr/bin/mergecap
+/usr/bin/mmdbresolve
 /usr/bin/randpkt
 /usr/bin/rawshark
 /usr/bin/reordercap
@@ -1134,6 +1141,7 @@ popd
 /usr/lib64/libwsutil.so.13.1.0
 /usr/lib64/wireshark/plugins/3.6/codecs/g711.so
 /usr/lib64/wireshark/plugins/3.6/codecs/l16mono.so
+/usr/lib64/wireshark/plugins/3.6/codecs/opus_dec.so
 /usr/lib64/wireshark/plugins/3.6/codecs/sbc.so
 /usr/lib64/wireshark/plugins/3.6/epan/ethercat.so
 /usr/lib64/wireshark/plugins/3.6/epan/gryphon.so
