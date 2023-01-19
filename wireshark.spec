@@ -4,7 +4,7 @@
 #
 Name     : wireshark
 Version  : 4.0.3
-Release  : 74
+Release  : 75
 URL      : https://1.na.dl.wireshark.org/src/wireshark-4.0.3.tar.xz
 Source0  : https://1.na.dl.wireshark.org/src/wireshark-4.0.3.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
@@ -66,9 +66,6 @@ BuildRequires : systemd-dev
 BuildRequires : tiff-dev
 BuildRequires : wireshark
 BuildRequires : zlib-dev
-# Suppress stripping binaries
-%define __strip /bin/true
-%define debug_package %{nil}
 Patch1: 0002-ignore-clobber.patch
 
 %description
@@ -136,14 +133,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1674148455
+export SOURCE_DATE_EPOCH=1674150340
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %cmake ..
 make  %{?_smp_mflags}
 popd
@@ -156,7 +153,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make %{?_smp_mflags} test || :
 
 %install
-export SOURCE_DATE_EPOCH=1674148455
+export SOURCE_DATE_EPOCH=1674150340
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/wireshark
 cp %{_builddir}/wireshark-%{version}/COPYING %{buildroot}/usr/share/package-licenses/wireshark/4cc77b90af91e615a64ae04893fdffa7939db84c || :
