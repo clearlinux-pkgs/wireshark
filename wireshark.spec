@@ -4,10 +4,10 @@
 # Using build pattern: cmake
 #
 Name     : wireshark
-Version  : 4.0.6
-Release  : 79
-URL      : https://2.na.dl.wireshark.org/src/wireshark-4.0.6.tar.xz
-Source0  : https://2.na.dl.wireshark.org/src/wireshark-4.0.6.tar.xz
+Version  : 4.0.7
+Release  : 80
+URL      : https://2.na.dl.wireshark.org/src/wireshark-4.0.7.tar.xz
+Source0  : https://2.na.dl.wireshark.org/src/wireshark-4.0.7.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-2.0 GPL-3.0 ISC
@@ -127,16 +127,16 @@ license components for the wireshark package.
 
 
 %prep
-%setup -q -n wireshark-4.0.6
-cd %{_builddir}/wireshark-4.0.6
-%patch1 -p1
+%setup -q -n wireshark-4.0.7
+cd %{_builddir}/wireshark-4.0.7
+%patch -P 1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685059490
+export SOURCE_DATE_EPOCH=1689270788
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -156,7 +156,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make %{?_smp_mflags} test || :
 
 %install
-export SOURCE_DATE_EPOCH=1685059490
+export SOURCE_DATE_EPOCH=1689270788
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/wireshark
 cp %{_builddir}/wireshark-%{version}/COPYING %{buildroot}/usr/share/package-licenses/wireshark/4cc77b90af91e615a64ae04893fdffa7939db84c || :
@@ -1150,9 +1150,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libwireshark.so.16
-/usr/lib64/libwireshark.so.16.0.6
+/usr/lib64/libwireshark.so.16.0.7
 /usr/lib64/libwiretap.so.13
-/usr/lib64/libwiretap.so.13.0.6
+/usr/lib64/libwiretap.so.13.0.7
 /usr/lib64/libwsutil.so.14
 /usr/lib64/libwsutil.so.14.0.0
 /usr/lib64/wireshark/plugins/4.0/codecs/g711.so
