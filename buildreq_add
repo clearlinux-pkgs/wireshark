@@ -3,8 +3,6 @@
 bison
 buildreq-kde
 collectd-dev
-compat-lua-52-dev
-compat-lua-52-staticdev
 doxygen
 flex
 libgcrypt-dev

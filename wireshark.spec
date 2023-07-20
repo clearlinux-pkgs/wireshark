@@ -5,7 +5,7 @@
 #
 Name     : wireshark
 Version  : 4.0.7
-Release  : 80
+Release  : 81
 URL      : https://2.na.dl.wireshark.org/src/wireshark-4.0.7.tar.xz
 Source0  : https://2.na.dl.wireshark.org/src/wireshark-4.0.7.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
@@ -19,8 +19,6 @@ BuildRequires : bison
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : collectd-dev
-BuildRequires : compat-lua-52-dev
-BuildRequires : compat-lua-52-staticdev
 BuildRequires : doxygen
 BuildRequires : extra-cmake-modules pkgconfig(glib-2.0)
 BuildRequires : flex
@@ -136,7 +134,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1689270788
+export SOURCE_DATE_EPOCH=1689897469
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -144,7 +142,7 @@ export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-l
 export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
-%cmake ..
+%cmake .. -DENABLE_LUA=OFF
 make  %{?_smp_mflags}
 popd
 
@@ -156,7 +154,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make %{?_smp_mflags} test || :
 
 %install
-export SOURCE_DATE_EPOCH=1689270788
+export SOURCE_DATE_EPOCH=1689897469
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/wireshark
 cp %{_builddir}/wireshark-%{version}/COPYING %{buildroot}/usr/share/package-licenses/wireshark/4cc77b90af91e615a64ae04893fdffa7939db84c || :
@@ -231,7 +229,6 @@ popd
 /usr/share/wireshark/COPYING
 /usr/share/wireshark/cfilters
 /usr/share/wireshark/colorfilters
-/usr/share/wireshark/console.lua
 /usr/share/wireshark/dfilter_macros
 /usr/share/wireshark/dfilters
 /usr/share/wireshark/diameter/AlcatelLucent.xml
@@ -265,7 +262,6 @@ popd
 /usr/share/wireshark/diameter/nasreq.xml
 /usr/share/wireshark/diameter/sip.xml
 /usr/share/wireshark/diameter/sunping.xml
-/usr/share/wireshark/dtd_gen.lua
 /usr/share/wireshark/dtds/dc.dtd
 /usr/share/wireshark/dtds/itunes.dtd
 /usr/share/wireshark/dtds/mscml.dtd
@@ -280,7 +276,6 @@ popd
 /usr/share/wireshark/dtds/xcap-error.dtd
 /usr/share/wireshark/enterprises.tsv
 /usr/share/wireshark/gpl-2.0-standalone.html
-/usr/share/wireshark/init.lua
 /usr/share/wireshark/ipmap.html
 /usr/share/wireshark/manuf
 /usr/share/wireshark/pdml2html.xsl
