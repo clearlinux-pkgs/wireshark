@@ -5,7 +5,7 @@
 #
 Name     : wireshark
 Version  : 4.0.7
-Release  : 81
+Release  : 82
 URL      : https://2.na.dl.wireshark.org/src/wireshark-4.0.7.tar.xz
 Source0  : https://2.na.dl.wireshark.org/src/wireshark-4.0.7.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
@@ -51,7 +51,6 @@ BuildRequires : pkgconfig(libssh)
 BuildRequires : pkgconfig(libtiff-4)
 BuildRequires : pkgconfig(libxml-2.0)
 BuildRequires : pkgconfig(lua)
-BuildRequires : pkgconfig(lua52)
 BuildRequires : pkgconfig(portaudio-2.0)
 BuildRequires : python3
 BuildRequires : python3-dev
@@ -134,7 +133,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1689897469
+export SOURCE_DATE_EPOCH=1690568995
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -154,7 +153,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make %{?_smp_mflags} test || :
 
 %install
-export SOURCE_DATE_EPOCH=1689897469
+export SOURCE_DATE_EPOCH=1690568995
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/wireshark
 cp %{_builddir}/wireshark-%{version}/COPYING %{buildroot}/usr/share/package-licenses/wireshark/4cc77b90af91e615a64ae04893fdffa7939db84c || :
