@@ -4,10 +4,10 @@
 # Using build pattern: cmake
 #
 Name     : wireshark
-Version  : 4.0.8
-Release  : 83
-URL      : https://2.na.dl.wireshark.org/src/wireshark-4.0.8.tar.xz
-Source0  : https://2.na.dl.wireshark.org/src/wireshark-4.0.8.tar.xz
+Version  : 4.0.9
+Release  : 84
+URL      : https://2.na.dl.wireshark.org/src/wireshark-4.0.9.tar.xz
+Source0  : https://2.na.dl.wireshark.org/src/wireshark-4.0.9.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-2.0 GPL-3.0 ISC
@@ -124,8 +124,8 @@ license components for the wireshark package.
 
 
 %prep
-%setup -q -n wireshark-4.0.8
-cd %{_builddir}/wireshark-4.0.8
+%setup -q -n wireshark-4.0.9
+cd %{_builddir}/wireshark-4.0.9
 %patch -P 1 -p1
 
 %build
@@ -133,14 +133,20 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1692908740
+export SOURCE_DATE_EPOCH=1696464051
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
-export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
-export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
-export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+CLEAR_INTERMEDIATE_CFLAGS="$CLEAR_INTERMEDIATE_CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+CLEAR_INTERMEDIATE_FCFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+CLEAR_INTERMEDIATE_FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+CLEAR_INTERMEDIATE_CXXFLAGS="$CLEAR_INTERMEDIATE_CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+CFLAGS="$CLEAR_INTERMEDIATE_CFLAGS"
+CXXFLAGS="$CLEAR_INTERMEDIATE_CXXFLAGS"
+FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
+FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
+ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
+LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
 %cmake .. -DENABLE_LUA=OFF
 make  %{?_smp_mflags}
 popd
@@ -153,7 +159,18 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make %{?_smp_mflags} test || :
 
 %install
-export SOURCE_DATE_EPOCH=1692908740
+export GCC_IGNORE_WERROR=1
+CLEAR_INTERMEDIATE_CFLAGS="$CLEAR_INTERMEDIATE_CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+CLEAR_INTERMEDIATE_FCFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+CLEAR_INTERMEDIATE_FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+CLEAR_INTERMEDIATE_CXXFLAGS="$CLEAR_INTERMEDIATE_CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+CFLAGS="$CLEAR_INTERMEDIATE_CFLAGS"
+CXXFLAGS="$CLEAR_INTERMEDIATE_CXXFLAGS"
+FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
+FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
+ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
+LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
+export SOURCE_DATE_EPOCH=1696464051
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/wireshark
 cp %{_builddir}/wireshark-%{version}/COPYING %{buildroot}/usr/share/package-licenses/wireshark/4cc77b90af91e615a64ae04893fdffa7939db84c || :
@@ -1144,9 +1161,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libwireshark.so.16
-/usr/lib64/libwireshark.so.16.0.8
+/usr/lib64/libwireshark.so.16.0.9
 /usr/lib64/libwiretap.so.13
-/usr/lib64/libwiretap.so.13.0.8
+/usr/lib64/libwiretap.so.13.0.9
 /usr/lib64/libwsutil.so.14
 /usr/lib64/libwsutil.so.14.0.0
 /usr/lib64/wireshark/plugins/4.0/codecs/g711.so
