@@ -17,3 +17,5 @@ opus-dev
 opusfile-dev
 speexdsp-dev
 systemd-dev
+buildreq-qt6
+qt5compat-dev
