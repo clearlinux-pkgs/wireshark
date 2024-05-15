@@ -227,6 +227,7 @@ libwireshark.so.17:decode_udp_ports
 libwireshark.so.17:decode_zcl_time_in_100ms
 libwireshark.so.17:decode_zcl_time_in_minutes
 libwireshark.so.17:decode_zcl_time_in_seconds
+libwireshark.so.17:decrement_dissection_depth
 libwireshark.so.17:delete_itu_tcap_subdissector
 libwireshark.so.17:deregister_depend_dissector
 libwireshark.so.17:destroy_print_stream
@@ -900,6 +901,7 @@ libwireshark.so.17:ieee1609dot2_set_next_default_psid
 libwireshark.so.17:ieee802a_add_oui
 libwireshark.so.17:in_cksum
 libwireshark.so.17:in_cksum_ret_partial
+libwireshark.so.17:increment_dissection_depth
 libwireshark.so.17:init_srt_table
 libwireshark.so.17:init_srt_table_row
 libwireshark.so.17:ip_checksum
@@ -1911,6 +1913,8 @@ libwiretap.so.14:wtap_block_add_uint32_option
 libwiretap.so.14:wtap_block_add_uint64_option
 libwiretap.so.14:wtap_block_add_uint8_option
 libwiretap.so.14:wtap_block_array_free
+libwiretap.so.14:wtap_block_array_ref
+libwiretap.so.14:wtap_block_array_unref
 libwiretap.so.14:wtap_block_copy
 libwiretap.so.14:wtap_block_count_option
 libwiretap.so.14:wtap_block_create
