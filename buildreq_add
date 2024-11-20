@@ -19,3 +19,4 @@ speexdsp-dev
 systemd-dev
 buildreq-qt6
 qt5compat-dev
+c-ares-dev
