@@ -379,6 +379,7 @@ libwireshark.so.18:dissect_nttime
 libwireshark.so.18:dissect_nttime_hyper
 libwireshark.so.18:dissect_nttime_hyper_1sec
 libwireshark.so.18:dissect_oer_IA5String
+libwireshark.so.18:dissect_oer_UTF8String
 libwireshark.so.18:dissect_oer_bit_string
 libwireshark.so.18:dissect_oer_boolean
 libwireshark.so.18:dissect_oer_choice
@@ -399,6 +400,7 @@ libwireshark.so.18:dissect_per_GeneralString
 libwireshark.so.18:dissect_per_IA5String
 libwireshark.so.18:dissect_per_NumericString
 libwireshark.so.18:dissect_per_PrintableString
+libwireshark.so.18:dissect_per_UTF8String
 libwireshark.so.18:dissect_per_VisibleString
 libwireshark.so.18:dissect_per_bit_string
 libwireshark.so.18:dissect_per_bit_string_containing_pdu_new
@@ -427,6 +429,7 @@ libwireshark.so.18:dissect_per_sequence
 libwireshark.so.18:dissect_per_sequence_eag
 libwireshark.so.18:dissect_per_sequence_of
 libwireshark.so.18:dissect_per_set_of
+libwireshark.so.18:dissect_per_size_constrained_type
 libwireshark.so.18:dissect_q931_bearer_capability_ie
 libwireshark.so.18:dissect_q931_high_layer_compat_ie
 libwireshark.so.18:dissect_q932_Address
