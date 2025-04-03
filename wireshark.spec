@@ -7,7 +7,7 @@
 #
 Name     : wireshark
 Version  : 4.4.5
-Release  : 127
+Release  : 128
 URL      : https://2.na.dl.wireshark.org/src/wireshark-4.4.5.tar.xz
 Source0  : https://2.na.dl.wireshark.org/src/wireshark-4.4.5.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
