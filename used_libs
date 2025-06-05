@@ -15,6 +15,6 @@ libopus.so.0
 libpcre2-8.so.0
 libsbc.so.1
 libsnappy.so.1
-libxml2.so.2
+libxml2.so.16
 libz.so.1
 libzstd.so.1
