@@ -6,10 +6,10 @@
 # autospec commit: 65cf152
 #
 Name     : wireshark
-Version  : 4.4.7
-Release  : 132
-URL      : https://2.na.dl.wireshark.org/src/wireshark-4.4.7.tar.xz
-Source0  : https://2.na.dl.wireshark.org/src/wireshark-4.4.7.tar.xz
+Version  : 4.4.8
+Release  : 133
+URL      : https://2.na.dl.wireshark.org/src/wireshark-4.4.8.tar.xz
+Source0  : https://2.na.dl.wireshark.org/src/wireshark-4.4.8.tar.xz
 Summary  : Generate parsers / DCE/RPC-clients from IDL
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-2.0 GPL-3.0 ISC MIT
@@ -140,11 +140,11 @@ license components for the wireshark package.
 
 
 %prep
-%setup -q -n wireshark-4.4.7
-cd %{_builddir}/wireshark-4.4.7
+%setup -q -n wireshark-4.4.8
+cd %{_builddir}/wireshark-4.4.8
 %patch -P 1 -p1
 pushd ..
-cp -a wireshark-4.4.7 buildavx2
+cp -a wireshark-4.4.8 buildavx2
 popd
 
 %build
@@ -152,7 +152,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1749137828
+export SOURCE_DATE_EPOCH=1752798003
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -213,7 +213,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1749137828
+export SOURCE_DATE_EPOCH=1752798003
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/wireshark
 cp %{_builddir}/wireshark-%{version}/COPYING %{buildroot}/usr/share/package-licenses/wireshark/5b48b90e1bafdbede57b01227ade30d51f4b2a3c || :
@@ -626,8 +626,8 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libwireshark.so.18.0.7
-/V3/usr/lib64/libwiretap.so.15.0.7
+/V3/usr/lib64/libwireshark.so.18.0.8
+/V3/usr/lib64/libwiretap.so.15.0.8
 /V3/usr/lib64/libwsutil.so.16.0.0
 /V3/usr/lib64/wireshark/plugins/4.4/codecs/g711.so
 /V3/usr/lib64/wireshark/plugins/4.4/codecs/l16mono.so
@@ -648,9 +648,9 @@ popd
 /V3/usr/lib64/wireshark/plugins/4.4/epan/wimaxmacphy.so
 /V3/usr/lib64/wireshark/plugins/4.4/wiretap/usbdump.so
 /usr/lib64/libwireshark.so.18
-/usr/lib64/libwireshark.so.18.0.7
+/usr/lib64/libwireshark.so.18.0.8
 /usr/lib64/libwiretap.so.15
-/usr/lib64/libwiretap.so.15.0.7
+/usr/lib64/libwiretap.so.15.0.8
 /usr/lib64/libwsutil.so.16
 /usr/lib64/libwsutil.so.16.0.0
 /usr/lib64/wireshark/plugins/4.4/codecs/g711.so
